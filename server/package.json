@@ -1,5 +1,5 @@
 {
-  "name": "factorial server",
+  "name": "factorial-server",
   "version": "1.0.0",
   "description": "",
   "main": "app.ts",
