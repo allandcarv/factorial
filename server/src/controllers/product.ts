@@ -4,6 +4,7 @@ import { getProduct, getProducts } from '../models/product';
 import { getProductType, getProductTypes } from '../models/product-types';
 import type { ProductTypeDTO } from '../types/product-type';
 import type { Product } from '../types/product';
+import { internalErrorHandler } from '../utils/internal-error';
 
 export const productsController = async (_req: Request, res: Response) => {
   try {
@@ -33,7 +34,7 @@ export const productsController = async (_req: Request, res: Response) => {
 
     res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    internalErrorHandler(res);
   }
 };
 
@@ -62,6 +63,6 @@ export const productController = async (req: Request, res: Response) => {
 
     res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    internalErrorHandler(res);
   }
 };

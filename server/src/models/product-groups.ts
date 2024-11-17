@@ -15,6 +15,25 @@ export const getProductGroups = async (): Promise<ProductGroupDTO[]> => {
     return productGroups;
   } catch (err) {
     console.error(err);
+
     throw new Error(`Error on getting product groups: ${err}`);
+  }
+};
+
+export const getProductGroup = async (
+  id: string
+): Promise<ProductGroupDTO | undefined> => {
+  try {
+    const productGroups = await getProductGroups();
+
+    const productGroup = productGroups.find(
+      (productGroup) => productGroup.id === id
+    );
+
+    return productGroup;
+  } catch (err) {
+    console.error(err);
+
+    throw new Error(`Error on getting product group: ${err}`);
   }
 };
