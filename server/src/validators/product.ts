@@ -4,5 +4,7 @@ export const validateNewProduct = [
   body('title').notEmpty().isString().trim(),
   body('description').notEmpty().isString().trim(),
   body('productType').notEmpty().isString().trim(),
-  body('stock').notEmpty().isBoolean(),
+  body('stock')
+    .notEmpty()
+    .custom((stock) => typeof stock === 'boolean'),
 ];

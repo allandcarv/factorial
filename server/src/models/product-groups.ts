@@ -1,7 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { NewProductGroup, ProductGroupDTO } from '../types/product-group';
+import type {
+  NewProductGroup,
+  ProductGroupDTO,
+  UpdateProductGroup,
+} from '../types/product-group';
 import { uuid } from '../utils/uuid';
 
 const PRODUCT_GROUPS_FILE = path.join(
@@ -66,5 +70,33 @@ export const addProductGroup = async (
     console.error(err);
 
     throw new Error(`Error on getting product group: ${err}`);
+  }
+};
+
+export const updateProductGroup = async (
+  updatedProductGroup: UpdateProductGroup
+): Promise<ProductGroupDTO> => {
+  try {
+    const productGroups = await getProductGroups();
+
+    const productGroupIdx = productGroups.findIndex(
+      (productGroup) => productGroup.id === updatedProductGroup.id
+    );
+
+    productGroups[productGroupIdx] = {
+      id: productGroups[productGroupIdx].id,
+      title: updatedProductGroup.title ?? productGroups[productGroupIdx].title,
+      description:
+        updatedProductGroup.description ??
+        productGroups[productGroupIdx].description,
+    };
+
+    await fs.writeFile(PRODUCT_GROUPS_FILE, JSON.stringify(productGroups));
+
+    return productGroups[productGroupIdx];
+  } catch (err) {
+    console.error(err);
+
+    throw new Error(`Error on replacing product group: ${err}`);
   }
 };

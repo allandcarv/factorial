@@ -77,7 +77,8 @@ export const addProductController = async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req);
 
-    if (!errors.isEmpty() || typeof req.body.stock !== 'boolean') {
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
       badRequest(res, 'All fields are required');
       return;
     }

@@ -5,10 +5,14 @@ import {
   addProductGroup,
   getProductGroup,
   getProductGroups,
+  updateProductGroup,
 } from '../models/product-groups';
 import { internalError } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
-import type { NewProductGroup } from '../types/product-group';
+import type {
+  NewProductGroup,
+  UpdateProductGroup,
+} from '../types/product-group';
 import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
 import { success } from '../utils/success';
@@ -59,6 +63,39 @@ export const addProductGroupController = async (
     const result = await addProductGroup(newProductGroup);
 
     created(res, result);
+  } catch (err) {
+    internalError(res);
+  }
+};
+
+export const updateProductGroupController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      badRequest(res, 'All fields are required');
+      return;
+    }
+
+    const productGroup = await getProductGroup(req.params.id);
+
+    if (!productGroup) {
+      badRequest(res, 'Product Group Not Found');
+      return;
+    }
+
+    const updatedProductGroup: UpdateProductGroup = {
+      id: req.params.id,
+      title: req.body.title,
+      description: req.body.description,
+    };
+
+    const result = await updateProductGroup(updatedProductGroup);
+
+    success(res, result);
   } catch (err) {
     internalError(res);
   }

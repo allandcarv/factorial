@@ -4,6 +4,7 @@ import {
   addProductGroupController,
   productGroupController,
   productGroupsController,
+  updateProductGroupController,
 } from '../controllers/product-groups';
 import {
   addProductTypeController,
@@ -15,7 +16,10 @@ import {
   productController,
   productsController,
 } from '../controllers/product';
-import { validateNewProductGroup } from '../validators/product-group';
+import {
+  validateNewProductGroup,
+  validateUpdateProductGroup,
+} from '../validators/product-group';
 import { validateNewProductType } from '../validators/product-type';
 import { validateNewProduct } from '../validators/product';
 
@@ -29,6 +33,11 @@ productGroupsRouter.post(
   '/groups',
   validateNewProductGroup,
   addProductGroupController
+);
+productGroupsRouter.patch(
+  '/groups/:id',
+  validateUpdateProductGroup,
+  updateProductGroupController
 );
 
 productGroupsRouter.get('/types/:id', productTypeController);
