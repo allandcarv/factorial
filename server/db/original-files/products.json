@@ -1,0 +1,93 @@
+[
+  {
+    "id": "f3507646-d1fb-46f1-82db-2bcf1c0421d1",
+    "title": "Full Suspension",
+    "product_type": "45b578ca-00aa-4ab5-a8d2-3dedeff70e81",
+    "description": "Frame Type - Full Suspension",
+    "stock": true
+  },
+  {
+    "id": "bd8b4ade-a72e-4a22-aa3d-dbb306789fb7",
+    "title": "Diamond",
+    "product_type": "45b578ca-00aa-4ab5-a8d2-3dedeff70e81",
+    "description": "Frame Type - Diamond",
+    "stock": true
+  },
+  {
+    "id": "b30d4032-e56e-49cb-9124-2e72492f0f1b",
+    "title": "Step Through",
+    "product_type": "45b578ca-00aa-4ab5-a8d2-3dedeff70e81",
+    "description": "Frame Type - Step Through",
+    "stock": true
+  },
+  {
+    "id": "fe74634b-1627-4cc2-89a8-5b263bbbc728",
+    "title": "Matte",
+    "product_type": "bbaa9be4-dc59-4eb0-ad05-61c9929c0946",
+    "description": "Frame Finish - Matte",
+    "stock": true
+  },
+  {
+    "id": "3b9df4cc-14cb-4b5f-bffc-623994110bc1",
+    "title": "Shiny",
+    "product_type": "bbaa9be4-dc59-4eb0-ad05-61c9929c0946",
+    "description": "Frame Finish - Shiny",
+    "stock": true
+  },
+  {
+    "id": "3a973741-6fd6-4aa8-9090-963369a5b5c8",
+    "title": "Road Wheels",
+    "product_type": "c12726ba-2fca-4ca7-b45d-7484f7f785ee",
+    "description": "Wheels - Road Wheels",
+    "stock": true
+  },
+  {
+    "id": "19f79984-fa52-4060-bc28-20094c8d38e6",
+    "title": "Mountain Wheels",
+    "product_type": "c12726ba-2fca-4ca7-b45d-7484f7f785ee",
+    "description": "Wheels - Mountain Wheels",
+    "stock": true
+  },
+  {
+    "id": "c29ed76a-70c2-4c96-96a2-166419034b90",
+    "title": "Fat Bike Wheels",
+    "product_type": "c12726ba-2fca-4ca7-b45d-7484f7f785ee",
+    "description": "Wheels - Fat Bike Wheels",
+    "stock": true
+  },
+  {
+    "id": "cfc5a7ee-9a9d-4f7b-91f8-b120cab807cd",
+    "title": "Red",
+    "product_type": "129e0ea1-fab3-4172-b75e-2c9c99920b94",
+    "description": "Rim Color - Red",
+    "stock": true
+  },
+  {
+    "id": "ddfb7ade-3a8b-4292-b2f2-2a18ef73f205",
+    "title": "Black",
+    "product_type": "129e0ea1-fab3-4172-b75e-2c9c99920b94",
+    "description": "Rim Color - Black",
+    "stock": true
+  },
+  {
+    "id": "a528a06c-0fd5-4059-a555-409927d31059",
+    "title": "Blue",
+    "product_type": "129e0ea1-fab3-4172-b75e-2c9c99920b94",
+    "description": "Rim Color - Blue",
+    "stock": true
+  },
+  {
+    "id": "78be3e84-3ebc-4b3d-b5b9-351b2eb68c24",
+    "title": "Single-Speed",
+    "product_type": "df4a0f56-e749-47cc-8cd1-5668b95a7f0b",
+    "description": "Chain - Single Speed",
+    "stock": true
+  },
+  {
+    "id": "6c08ac70-1c8f-4747-a97e-1590fed67903",
+    "title": "8-speed",
+    "product_type": "df4a0f56-e749-47cc-8cd1-5668b95a7f0b",
+    "description": "Chain - 8-speed",
+    "stock": true
+  }
+]
