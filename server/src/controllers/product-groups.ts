@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
 import {
   addProductGroup,
@@ -7,8 +8,9 @@ import {
 } from '../models/product-groups';
 import { internalErrorHandler } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
-import { validationResult } from 'express-validator';
-import type { NewProductGroupDTO } from '../types/product-group';
+import type { NewProductGroup } from '../types/product-group';
+import { badRequest } from '../utils/bad-request';
+import { created } from '../utils/created';
 
 export const productGroupsController = async (_req: Request, res: Response) => {
   try {
@@ -44,18 +46,18 @@ export const addProductGroupController = async (
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(400).json({ message: 'All fields are required' });
+      badRequest(res, 'All fields are required');
       return;
     }
 
-    const newProductGroup: NewProductGroupDTO = {
+    const newProductGroup: NewProductGroup = {
       description: req.body.description,
       title: req.body.title,
     };
 
     const result = await addProductGroup(newProductGroup);
 
-    res.status(201).json(result);
+    created(res, result);
   } catch (err) {
     internalErrorHandler(res);
   }

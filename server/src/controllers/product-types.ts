@@ -1,11 +1,18 @@
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
-import { getProductType, getProductTypes } from '../models/product-types';
+import {
+  addProductType,
+  getProductType,
+  getProductTypes,
+} from '../models/product-types';
 import { getProductGroup, getProductGroups } from '../models/product-groups';
-import type { ProductType } from '../types/product-type';
+import type { NewProductType, ProductType } from '../types/product-type';
 import type { ProductGroupDTO } from '../types/product-group';
 import { internalErrorHandler } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
+import { badRequest } from '../utils/bad-request';
+import { created } from '../utils/created';
 
 export const productTypesController = async (_req: Request, res: Response) => {
   try {
@@ -62,6 +69,33 @@ export const productTypeController = async (req: Request, res: Response) => {
     };
 
     res.status(200).json(result);
+  } catch (err) {
+    internalErrorHandler(res);
+  }
+};
+
+export const addProductTypeController = async (req: Request, res: Response) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      badRequest(res, 'All fields are required');
+      return;
+    }
+
+    const newProductType: NewProductType = {
+      description: req.body.description,
+      productGroup: req.body.productGroup,
+      title: req.body.title,
+    };
+
+    const result = await addProductType(newProductType);
+
+    if (typeof result === 'string') {
+      badRequest(res, result);
+    } else {
+      created(res, result);
+    }
   } catch (err) {
     internalErrorHandler(res);
   }

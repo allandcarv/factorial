@@ -1,10 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type {
-  NewProductGroupDTO,
-  ProductGroupDTO,
-} from '../types/product-group';
+import type { NewProductGroup, ProductGroupDTO } from '../types/product-group';
 import { uuid } from '../utils/uuid';
 
 const PRODUCT_GROUPS_FILE = path.join(
@@ -49,7 +46,7 @@ export const getProductGroup = async (
 };
 
 export const addProductGroup = async (
-  newProductGroup: NewProductGroupDTO
+  newProductGroup: NewProductGroup
 ): Promise<ProductGroupDTO> => {
   try {
     const productGroups = await getProductGroups();
