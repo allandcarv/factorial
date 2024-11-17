@@ -5,6 +5,7 @@ import { getProductType, getProductTypes } from '../models/product-types';
 import type { ProductTypeDTO } from '../types/product-type';
 import type { Product } from '../types/product';
 import { internalErrorHandler } from '../utils/internal-error';
+import { resourceNotFound } from '../utils/resource-not-found';
 
 export const productsController = async (_req: Request, res: Response) => {
   try {
@@ -44,7 +45,8 @@ export const productController = async (req: Request, res: Response) => {
     const product = await getProduct(id);
 
     if (!product) {
-      res.status(404).json({ message: 'Product not found' });
+      resourceNotFound(res, 'Product not found');
+
       return;
     }
 

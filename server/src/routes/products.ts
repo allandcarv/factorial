@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
-import { productGroupsController } from '../controllers/product-groups';
+import {
+  productGroupController,
+  productGroupsController,
+} from '../controllers/product-groups';
 import {
   productTypeController,
   productTypesController,
@@ -11,6 +14,7 @@ const productsRouter = Router();
 const productGroupsRouter = Router();
 const productTypesRouter = Router();
 
+productGroupsRouter.get('/groups/:id', productGroupController);
 productGroupsRouter.get('/groups', productGroupsController);
 
 productGroupsRouter.get('/types/:id', productTypeController);
