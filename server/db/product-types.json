@@ -1,0 +1,32 @@
+[
+  {
+    "id": "pt-01",
+    "title": "Frame Type",
+    "product_group": "pg-01",
+    "description": "Frame Type"
+  },
+  {
+    "id": "pt-02",
+    "title": "Frame Finish",
+    "product_group": "pg-01",
+    "description": "Frame Finish"
+  },
+  {
+    "id": "pt-03",
+    "title": "Wheels",
+    "product_group": "pg-01",
+    "description": "Wheels"
+  },
+  {
+    "id": "pt-04",
+    "title": "Rim Color",
+    "product_group": "pg-01",
+    "description": "Rim Color"
+  },
+  {
+    "id": "pt-05",
+    "title": "Chain",
+    "product_group": "pg-01",
+    "description": "Chain"
+  }
+]

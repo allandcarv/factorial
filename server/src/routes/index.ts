@@ -1,3 +1,3 @@
-import { rootRoute } from './root';
+import { productsRouter } from './products';
 
-export const routes = [rootRoute];
+export const routes = [productsRouter];

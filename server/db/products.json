@@ -1,0 +1,93 @@
+[
+  {
+    "id": "p-01",
+    "title": "Full Suspension",
+    "product_type": "pt-01",
+    "description": "Frame Type - Full Suspension",
+    "stock": true
+  },
+  {
+    "id": "p-02",
+    "title": "Diamond",
+    "product_type": "pt-01",
+    "description": "Frame Type - Diamond",
+    "stock": true
+  },
+  {
+    "id": "p-03",
+    "title": "Step Through",
+    "product_type": "pt-01",
+    "description": "Frame Type - Step Through",
+    "stock": true
+  },
+  {
+    "id": "p-04",
+    "title": "Matte",
+    "product_type": "pt-02",
+    "description": "Frame Finish - Matte",
+    "stock": true
+  },
+  {
+    "id": "p-05",
+    "title": "Shiny",
+    "product_type": "pt-02",
+    "description": "Frame Finish - Shiny",
+    "stock": true
+  },
+  {
+    "id": "p-06",
+    "title": "Road Wheels",
+    "product_type": "pt-03",
+    "description": "Wheels - Road Wheels",
+    "stock": true
+  },
+  {
+    "id": "p-07",
+    "title": "Mountain Wheels",
+    "product_type": "pt-03",
+    "description": "Wheels - Mountain Wheels",
+    "stock": true
+  },
+  {
+    "id": "p-08",
+    "title": "Fat Bike Wheels",
+    "product_type": "pt-03",
+    "description": "Wheels - Fat Bike Wheels",
+    "stock": true
+  },
+  {
+    "id": "p-09",
+    "title": "Red",
+    "product_type": "pt-04",
+    "description": "Rim Color - Red",
+    "stock": true
+  },
+  {
+    "id": "p-10",
+    "title": "Black",
+    "product_type": "pt-04",
+    "description": "Rim Color - Black",
+    "stock": true
+  },
+  {
+    "id": "p-11",
+    "title": "Blue",
+    "product_type": "pt-04",
+    "description": "Rim Color - Blue",
+    "stock": true
+  },
+  {
+    "id": "p-12",
+    "title": "Single-Speed",
+    "product_type": "pt-05",
+    "description": "Chain - Single Speed",
+    "stock": true
+  },
+  {
+    "id": "p-13",
+    "title": "8-speed",
+    "product_type": "pt-05",
+    "description": "Chain - 8-speed",
+    "stock": true
+  }
+]
