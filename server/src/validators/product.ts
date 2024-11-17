@@ -1,7 +1,8 @@
 import { body } from 'express-validator';
 
-export const validateNewProductType = [
+export const validateNewProduct = [
   body('title').notEmpty().isString().trim(),
   body('description').notEmpty().isString().trim(),
-  body('productGroup').notEmpty().isString().trim(),
+  body('productType').notEmpty().isString().trim(),
+  body('stock').notEmpty().isBoolean(),
 ];

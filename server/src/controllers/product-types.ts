@@ -9,7 +9,7 @@ import {
 import { getProductGroup, getProductGroups } from '../models/product-groups';
 import type { NewProductType, ProductType } from '../types/product-type';
 import type { ProductGroupDTO } from '../types/product-group';
-import { internalErrorHandler } from '../utils/internal-error';
+import { internalError } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
 import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
@@ -42,7 +42,7 @@ export const productTypesController = async (_req: Request, res: Response) => {
 
     success(res, result);
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };
 
@@ -71,7 +71,7 @@ export const productTypeController = async (req: Request, res: Response) => {
 
     success(res, result);
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };
 
@@ -84,6 +84,13 @@ export const addProductTypeController = async (req: Request, res: Response) => {
       return;
     }
 
+    const productGroup = await getProductGroup(req.body.productGroup);
+
+    if (!productGroup) {
+      badRequest(res, 'Product Group Not Found');
+      return;
+    }
+
     const newProductType: NewProductType = {
       description: req.body.description,
       productGroup: req.body.productGroup,
@@ -92,12 +99,18 @@ export const addProductTypeController = async (req: Request, res: Response) => {
 
     const result = await addProductType(newProductType);
 
-    if (typeof result === 'string') {
-      badRequest(res, result);
-    } else {
-      created(res, result);
-    }
+    const productType: ProductType = {
+      id: result.id,
+      title: result.title,
+      productGroup: {
+        id: productGroup.id,
+        title: productGroup.title,
+      },
+      description: result.description,
+    };
+
+    created(res, productType);
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };

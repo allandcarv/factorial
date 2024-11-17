@@ -6,7 +6,7 @@ import {
   getProductGroup,
   getProductGroups,
 } from '../models/product-groups';
-import { internalErrorHandler } from '../utils/internal-error';
+import { internalError } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
 import type { NewProductGroup } from '../types/product-group';
 import { badRequest } from '../utils/bad-request';
@@ -19,7 +19,7 @@ export const productGroupsController = async (_req: Request, res: Response) => {
 
     success(res, productGroups);
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };
 
@@ -35,7 +35,7 @@ export const productGroupController = async (req: Request, res: Response) => {
       resourceNotFound(res, 'Product Group Not Found');
     }
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };
 
@@ -60,6 +60,6 @@ export const addProductGroupController = async (
 
     created(res, result);
   } catch (err) {
-    internalErrorHandler(res);
+    internalError(res);
   }
 };

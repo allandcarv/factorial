@@ -1,11 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type {
-  NewProductType,
-  ProductType,
-  ProductTypeDTO,
-} from '../types/product-type';
+import type { NewProductType, ProductTypeDTO } from '../types/product-type';
 import { getProductGroup } from './product-groups';
 import { uuid } from '../utils/uuid';
 
@@ -52,14 +48,8 @@ export const getProductType = async (
 
 export const addProductType = async (
   newProductType: NewProductType
-): Promise<ProductType | string> => {
+): Promise<ProductTypeDTO> => {
   try {
-    const productGroup = await getProductGroup(newProductType.productGroup);
-
-    if (!productGroup) {
-      return 'Product Group Not Found';
-    }
-
     const productTypes = await getProductTypes();
 
     const productType: ProductTypeDTO = {
@@ -73,15 +63,7 @@ export const addProductType = async (
 
     await fs.writeFile(PRODUCT_TYPES_FILE, JSON.stringify(productTypes));
 
-    return {
-      id: productType.id,
-      title: productType.title,
-      productGroup: {
-        id: productGroup.id,
-        title: productGroup.title,
-      },
-      description: productType.description,
-    };
+    return productType;
   } catch (err) {
     console.error(err);
 

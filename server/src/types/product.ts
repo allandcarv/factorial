@@ -15,3 +15,8 @@ export interface Product {
   description: string;
   stock: boolean;
 }
+
+export interface NewProduct
+  extends Pick<Product, 'description' | 'stock' | 'title'> {
+  productType: string;
+}

@@ -10,9 +10,14 @@ import {
   productTypeController,
   productTypesController,
 } from '../controllers/product-types';
-import { productController, productsController } from '../controllers/product';
+import {
+  addProductController,
+  productController,
+  productsController,
+} from '../controllers/product';
 import { validateNewProductGroup } from '../validators/product-group';
 import { validateNewProductType } from '../validators/product-type';
+import { validateNewProduct } from '../validators/product';
 
 const productsRouter = Router();
 const productGroupsRouter = Router();
@@ -38,5 +43,6 @@ productsRouter.use('/products', productGroupsRouter);
 productsRouter.use('/products', productTypesRouter);
 productsRouter.get('/products/:id', productController);
 productsRouter.get('/products', productsController);
+productsRouter.post('/products', validateNewProduct, addProductController);
 
 export { productsRouter };
