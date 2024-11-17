@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { getProducts } from '../models/product';
-import { getProductTypes } from '../models/product-types';
+import { getProduct, getProducts } from '../models/product';
+import { getProductType, getProductTypes } from '../models/product-types';
 import type { ProductTypeDTO } from '../types/product-type';
 import type { Product } from '../types/product';
 
@@ -30,6 +30,35 @@ export const productsController = async (_req: Request, res: Response) => {
         title: product.title,
       };
     });
+
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+export const productController = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const product = await getProduct(id);
+
+    if (!product) {
+      res.status(404).json({ message: 'Product not found' });
+      return;
+    }
+
+    const productType = await getProductType(product.product_type);
+
+    const result: Product = {
+      description: product.description,
+      id: product.id,
+      productType: {
+        id: productType?.id,
+        title: productType?.title,
+      },
+      stock: product.stock,
+      title: product.title,
+    };
 
     res.status(200).json(result);
   } catch (err) {
