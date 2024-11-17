@@ -13,6 +13,7 @@ import { internalErrorHandler } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
 import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
+import { success } from '../utils/success';
 
 export const productTypesController = async (_req: Request, res: Response) => {
   try {
@@ -39,7 +40,7 @@ export const productTypesController = async (_req: Request, res: Response) => {
       };
     });
 
-    res.status(200).json(result);
+    success(res, result);
   } catch (err) {
     internalErrorHandler(res);
   }
@@ -68,7 +69,7 @@ export const productTypeController = async (req: Request, res: Response) => {
       title: productType.title,
     };
 
-    res.status(200).json(result);
+    success(res, result);
   } catch (err) {
     internalErrorHandler(res);
   }

@@ -11,12 +11,13 @@ import { resourceNotFound } from '../utils/resource-not-found';
 import type { NewProductGroup } from '../types/product-group';
 import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
+import { success } from '../utils/success';
 
 export const productGroupsController = async (_req: Request, res: Response) => {
   try {
     const productGroups = await getProductGroups();
 
-    res.status(200).json(productGroups);
+    success(res, productGroups);
   } catch (err) {
     internalErrorHandler(res);
   }
@@ -29,7 +30,7 @@ export const productGroupController = async (req: Request, res: Response) => {
     const productGroup = await getProductGroup(id);
 
     if (productGroup) {
-      res.status(200).json(productGroup);
+      success(res, productGroup);
     } else {
       resourceNotFound(res, 'Product Group Not Found');
     }
