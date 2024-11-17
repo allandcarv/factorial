@@ -15,6 +15,7 @@ export const getProductTypes = async (): Promise<ProductTypeDTO[]> => {
 
     return productTypes;
   } catch (err) {
+    console.error(err);
     throw new Error(`Error on getting product types: ${err}`);
   }
 };
