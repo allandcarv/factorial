@@ -1,6 +1,7 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 import {
+  addProductGroupController,
   productGroupController,
   productGroupsController,
 } from '../controllers/product-groups';
@@ -9,6 +10,7 @@ import {
   productTypesController,
 } from '../controllers/product-types';
 import { productController, productsController } from '../controllers/product';
+import { validateNewProductGroup } from '../validators/product-group';
 
 const productsRouter = Router();
 const productGroupsRouter = Router();
@@ -16,6 +18,11 @@ const productTypesRouter = Router();
 
 productGroupsRouter.get('/groups/:id', productGroupController);
 productGroupsRouter.get('/groups', productGroupsController);
+productGroupsRouter.post(
+  '/groups',
+  validateNewProductGroup,
+  addProductGroupController
+);
 
 productGroupsRouter.get('/types/:id', productTypeController);
 productGroupsRouter.get('/types', productTypesController);

@@ -1,13 +1,23 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { ProductGroupDTO } from '../types/product-group';
+import type {
+  NewProductGroupDTO,
+  ProductGroupDTO,
+} from '../types/product-group';
+import { uuid } from '../utils/uuid';
+
+const PRODUCT_GROUPS_FILE = path.join(
+  __dirname,
+  '..',
+  '..',
+  'db',
+  'product-groups.json'
+);
 
 export const getProductGroups = async (): Promise<ProductGroupDTO[]> => {
   try {
-    const productGroupsBuffer = await fs.readFile(
-      path.join(__dirname, '..', '..', 'db', 'product-groups.json')
-    );
+    const productGroupsBuffer = await fs.readFile(PRODUCT_GROUPS_FILE);
 
     const productGroups: ProductGroupDTO[] = JSON.parse(
       productGroupsBuffer.toString()
@@ -29,6 +39,30 @@ export const getProductGroup = async (
     const productGroup = productGroups.find(
       (productGroup) => productGroup.id === id
     );
+
+    return productGroup;
+  } catch (err) {
+    console.error(err);
+
+    throw new Error(`Error on getting product group: ${err}`);
+  }
+};
+
+export const addProductGroup = async (
+  newProductGroup: NewProductGroupDTO
+): Promise<ProductGroupDTO> => {
+  try {
+    const productGroups = await getProductGroups();
+
+    const productGroup: ProductGroupDTO = {
+      id: uuid(),
+      title: newProductGroup.title,
+      description: newProductGroup.description,
+    };
+
+    productGroups.push(productGroup);
+
+    await fs.writeFile(PRODUCT_GROUPS_FILE, JSON.stringify(productGroups));
 
     return productGroup;
   } catch (err) {

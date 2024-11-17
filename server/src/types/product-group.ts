@@ -3,3 +3,5 @@ export interface ProductGroupDTO {
   title: string;
   description: string;
 }
+
+export type NewProductGroupDTO = Omit<ProductGroupDTO, 'id'>;
