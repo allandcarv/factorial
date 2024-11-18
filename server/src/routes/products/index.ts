@@ -13,6 +13,7 @@ import {
 } from '../../controllers/product';
 import { productGroupsRouter } from './product-group';
 import { productTypesRouter } from './product-type';
+import { deleteProductController } from '../../controllers/product/delete-product';
 
 const productsRouter = Router();
 
@@ -35,5 +36,7 @@ productsRouter.patch(
   fieldsErrorValidation,
   updateProductController
 );
+
+productsRouter.delete('/products/:id', deleteProductController);
 
 export { productsRouter };
