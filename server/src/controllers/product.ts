@@ -11,7 +11,7 @@ import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
 import { success } from '../utils/success';
 
-export const productsController = async (_req: Request, res: Response) => {
+export const getProductsController = async (_req: Request, res: Response) => {
   try {
     const products = await getProducts();
     const productTypes = await getProductTypes();
@@ -43,7 +43,7 @@ export const productsController = async (_req: Request, res: Response) => {
   }
 };
 
-export const productController = async (req: Request, res: Response) => {
+export const getProductController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const product = await getProduct(id);

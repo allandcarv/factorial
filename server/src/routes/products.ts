@@ -2,19 +2,19 @@ import { Router, Request, Response } from 'express';
 
 import {
   addProductGroupController,
-  productGroupController,
-  productGroupsController,
+  getProductGroupController,
+  getProductGroupsController,
   updateProductGroupController,
 } from '../controllers/product-groups';
 import {
   addProductTypeController,
-  productTypeController,
-  productTypesController,
+  getProductTypeController,
+  getProductTypesController,
 } from '../controllers/product-types';
 import {
   addProductController,
-  productController,
-  productsController,
+  getProductController,
+  getProductsController,
 } from '../controllers/product';
 import {
   validateNewProductGroup,
@@ -27,8 +27,8 @@ const productsRouter = Router();
 const productGroupsRouter = Router();
 const productTypesRouter = Router();
 
-productGroupsRouter.get('/groups/:id', productGroupController);
-productGroupsRouter.get('/groups', productGroupsController);
+productGroupsRouter.get('/groups/:id', getProductGroupController);
+productGroupsRouter.get('/groups', getProductGroupsController);
 productGroupsRouter.post(
   '/groups',
   validateNewProductGroup,
@@ -40,8 +40,8 @@ productGroupsRouter.patch(
   updateProductGroupController
 );
 
-productGroupsRouter.get('/types/:id', productTypeController);
-productGroupsRouter.get('/types', productTypesController);
+productGroupsRouter.get('/types/:id', getProductTypeController);
+productGroupsRouter.get('/types', getProductTypesController);
 productGroupsRouter.post(
   '/types',
   validateNewProductType,
@@ -50,8 +50,8 @@ productGroupsRouter.post(
 
 productsRouter.use('/products', productGroupsRouter);
 productsRouter.use('/products', productTypesRouter);
-productsRouter.get('/products/:id', productController);
-productsRouter.get('/products', productsController);
+productsRouter.get('/products/:id', getProductController);
+productsRouter.get('/products', getProductsController);
 productsRouter.post('/products', validateNewProduct, addProductController);
 
 export { productsRouter };
