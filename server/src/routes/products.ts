@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 
 import {
   addProductGroupController,
@@ -10,6 +10,7 @@ import {
   addProductTypeController,
   getProductTypeController,
   getProductTypesController,
+  updateProductTypeController,
 } from '../controllers/product-types';
 import {
   addProductController,
@@ -20,8 +21,12 @@ import {
   validateNewProductGroup,
   validateUpdateProductGroup,
 } from '../validators/product-group';
-import { validateNewProductType } from '../validators/product-type';
+import {
+  validateNewProductType,
+  validateUpdateProductType,
+} from '../validators/product-type';
 import { validateNewProduct } from '../validators/product';
+import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 
 const productsRouter = Router();
 const productGroupsRouter = Router();
@@ -32,11 +37,13 @@ productGroupsRouter.get('/groups', getProductGroupsController);
 productGroupsRouter.post(
   '/groups',
   validateNewProductGroup,
+  fieldsErrorValidation,
   addProductGroupController
 );
 productGroupsRouter.patch(
   '/groups/:id',
   validateUpdateProductGroup,
+  fieldsErrorValidation,
   updateProductGroupController
 );
 
@@ -45,13 +52,25 @@ productGroupsRouter.get('/types', getProductTypesController);
 productGroupsRouter.post(
   '/types',
   validateNewProductType,
+  fieldsErrorValidation,
   addProductTypeController
+);
+productGroupsRouter.patch(
+  '/types/:id',
+  validateUpdateProductType,
+  fieldsErrorValidation,
+  updateProductTypeController
 );
 
 productsRouter.use('/products', productGroupsRouter);
 productsRouter.use('/products', productTypesRouter);
 productsRouter.get('/products/:id', getProductController);
 productsRouter.get('/products', getProductsController);
-productsRouter.post('/products', validateNewProduct, addProductController);
+productsRouter.post(
+  '/products',
+  validateNewProduct,
+  fieldsErrorValidation,
+  addProductController
+);
 
 export { productsRouter };

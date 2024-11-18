@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { validationResult } from 'express-validator';
 
 import {
   addProductGroup,
@@ -13,9 +12,9 @@ import type {
   NewProductGroup,
   UpdateProductGroup,
 } from '../types/product-group';
-import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
 import { success } from '../utils/success';
+import { notFound } from '../utils/not-found';
 
 export const getProductGroupsController = async (
   _req: Request,
@@ -54,13 +53,6 @@ export const addProductGroupController = async (
   res: Response
 ) => {
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      badRequest(res, 'All fields are required');
-      return;
-    }
-
     const newProductGroup: NewProductGroup = {
       description: req.body.description,
       title: req.body.title,
@@ -79,17 +71,10 @@ export const updateProductGroupController = async (
   res: Response
 ) => {
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      badRequest(res, 'All fields are required');
-      return;
-    }
-
     const productGroup = await getProductGroup(req.params.id);
 
     if (!productGroup) {
-      badRequest(res, 'Product Group Not Found');
+      notFound(res, 'Product Group Not Found');
       return;
     }
 

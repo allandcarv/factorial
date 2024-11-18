@@ -5,3 +5,9 @@ export const validateNewProductType = [
   body('description').notEmpty().isString().trim(),
   body('productGroup').notEmpty().isString().trim(),
 ];
+
+export const validateUpdateProductType = [
+  body('title').optional().isString().trim(),
+  body('productGroup').optional().isString().trim(),
+  body('description').optional().isString().trim(),
+];

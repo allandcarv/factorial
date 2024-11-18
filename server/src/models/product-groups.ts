@@ -79,21 +79,27 @@ export const updateProductGroup = async (
   try {
     const productGroups = await getProductGroups();
 
-    const productGroupIdx = productGroups.findIndex(
+    const productGroupToUpdate = productGroups.find(
       (productGroup) => productGroup.id === updatedProductGroup.id
     );
 
-    productGroups[productGroupIdx] = {
-      id: productGroups[productGroupIdx].id,
-      title: updatedProductGroup.title ?? productGroups[productGroupIdx].title,
-      description:
-        updatedProductGroup.description ??
-        productGroups[productGroupIdx].description,
-    };
+    if (!productGroupToUpdate) {
+      /**
+       * Controller is checking if the product group exists,
+       * if no product group is found, the controller should
+       * be fixed, hence, the following error
+       */
+      throw new Error('Product Group not Found');
+    }
+
+    productGroupToUpdate.description =
+      updatedProductGroup.description ?? productGroupToUpdate.description;
+    productGroupToUpdate.title =
+      updatedProductGroup.title ?? productGroupToUpdate.title;
 
     await fs.writeFile(PRODUCT_GROUPS_FILE, JSON.stringify(productGroups));
 
-    return productGroups[productGroupIdx];
+    return productGroupToUpdate;
   } catch (err) {
     console.error(err);
 

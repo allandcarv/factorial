@@ -1,7 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { NewProductType, ProductTypeDTO } from '../types/product-type';
+import type {
+  NewProductType,
+  ProductTypeDTO,
+  UpdateProductType,
+} from '../types/product-type';
 import { getProductGroup } from './product-groups';
 import { uuid } from '../utils/uuid';
 
@@ -64,6 +68,46 @@ export const addProductType = async (
     await fs.writeFile(PRODUCT_TYPES_FILE, JSON.stringify(productTypes));
 
     return productType;
+  } catch (err) {
+    console.error(err);
+
+    throw new Error(`Error on getting product group: ${err}`);
+  }
+};
+
+export const updateProductType = async (
+  updatedProductType: UpdateProductType
+): Promise<ProductTypeDTO> => {
+  try {
+    const productTypes = await getProductTypes();
+
+    const productTypeIdx = productTypes.findIndex(
+      (productType) => productType.id === updatedProductType.id
+    );
+
+    const productTypeToUpdate = productTypes.find(
+      (productType) => productType.id === updatedProductType.id
+    );
+
+    if (!productTypeToUpdate) {
+      /**
+       * Controller is checking if the product type exists,
+       * if no product type is found, the controller should
+       * be fixed, hence, the following error
+       */
+      throw new Error('Product type not found');
+    }
+
+    productTypeToUpdate.description =
+      updatedProductType.description ?? productTypeToUpdate.description;
+    productTypeToUpdate.product_group =
+      updatedProductType.productGroup ?? productTypeToUpdate.product_group;
+    productTypeToUpdate.title =
+      updatedProductType.title ?? productTypeToUpdate.title;
+
+    await fs.writeFile(PRODUCT_TYPES_FILE, JSON.stringify(productTypes));
+
+    return productTypeToUpdate;
   } catch (err) {
     console.error(err);
 

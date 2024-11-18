@@ -18,3 +18,7 @@ export interface NewProductType
   extends Pick<ProductTypeDTO, 'title' | 'description'> {
   productGroup: string;
 }
+
+export interface UpdateProductType extends Partial<NewProductType> {
+  id: string;
+}
