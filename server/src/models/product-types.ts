@@ -71,7 +71,7 @@ export const addProductType = async (
   } catch (err) {
     console.error(err);
 
-    throw new Error(`Error on getting product group: ${err}`);
+    throw new Error(`Error on getting product type: ${err}`);
   }
 };
 
@@ -107,6 +107,24 @@ export const updateProductType = async (
   } catch (err) {
     console.error(err);
 
-    throw new Error(`Error on getting product group: ${err}`);
+    throw new Error(`Error on getting product type: ${err}`);
+  }
+};
+
+export const deleteProductType = async (
+  productTypeId: string
+): Promise<void> => {
+  try {
+    const productTypes = await getProductTypes();
+
+    const newProductTypes = productTypes.filter(
+      (productType) => productType.id !== productTypeId
+    );
+
+    await fs.writeFile(PRODUCT_TYPES_FILE, JSON.stringify(newProductTypes));
+  } catch (err) {
+    console.error(err);
+
+    throw new Error(`Error on deleting product type: ${err}`);
   }
 };

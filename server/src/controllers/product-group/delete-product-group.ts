@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
+
 import {
   deleteProductGroup,
   getProductGroup,
 } from '../../models/product-groups';
 import { notFound } from '../../utils/not-found';
 import { internalError } from '../../utils/internal-error';
+import { noContent } from '../../utils/no-content';
 
 export const deleteProductGroupController = async (
   req: Request,
@@ -22,7 +24,7 @@ export const deleteProductGroupController = async (
 
     await deleteProductGroup(productGroupId);
 
-    res.status(204).send();
+    noContent(res);
   } catch (err) {
     internalError(res);
   }

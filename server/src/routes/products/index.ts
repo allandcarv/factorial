@@ -21,12 +21,14 @@ productsRouter.use('/products', productTypesRouter);
 
 productsRouter.get('/products/:id', getProductController);
 productsRouter.get('/products', getProductsController);
+
 productsRouter.post(
   '/products',
   validateNewProduct,
   fieldsErrorValidation,
   addProductController
 );
+
 productsRouter.patch(
   '/products/:id',
   validateUpdateProduct,
