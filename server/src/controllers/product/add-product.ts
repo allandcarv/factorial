@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductType } from '../../models/product-types';
+import { getProductType } from '../../models/product-type';
 import { badRequest } from '../../utils/bad-request';
 import type { NewProduct, Product } from '../../types/product';
 import { addProduct } from '../../models/product';

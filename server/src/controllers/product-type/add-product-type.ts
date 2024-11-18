@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { getProductGroup } from '../../models/product-group';
 import { badRequest } from '../../utils/bad-request';
 import type { NewProductType, ProductType } from '../../types/product-type';
-import { addProductType } from '../../models/product-types';
+import { addProductType } from '../../models/product-type';
 import { created } from '../../utils/created';
 import { internalError } from '../../utils/internal-error';
 

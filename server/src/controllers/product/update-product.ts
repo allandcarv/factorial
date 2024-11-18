@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { getProduct, updateProduct } from '../../models/product';
 import { notFound } from '../../utils/not-found';
 import type { ProductTypeDTO } from '../../types/product-type';
-import { getProductType } from '../../models/product-types';
+import { getProductType } from '../../models/product-type';
 import type { UpdateProduct, Product } from '../../types/product';
 import { badRequest } from '../../utils/bad-request';
 import { internalError } from '../../utils/internal-error';

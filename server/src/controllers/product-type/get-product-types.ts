@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductTypes } from '../../models/product-types';
+import { getProductTypes } from '../../models/product-type';
 import { getProductGroups } from '../../models/product-group';
 import type { ProductGroupDTO } from '../../types/product-group';
 import type { ProductType } from '../../types/product-type';

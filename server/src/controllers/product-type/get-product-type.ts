@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductType } from '../../models/product-types';
+import { getProductType } from '../../models/product-type';
 import { resourceNotFound } from '../../utils/resource-not-found';
 import { getProductGroup } from '../../models/product-group';
 import type { ProductType } from '../../types/product-type';

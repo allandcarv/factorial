@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { getProduct } from '../../models/product';
 import { resourceNotFound } from '../../utils/resource-not-found';
-import { getProductType } from '../../models/product-types';
+import { getProductType } from '../../models/product-type';
 import type { Product } from '../../types/product';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
