@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductGroup } from '../../models/product-groups';
+import { getProductGroup } from '../../models/product-group';
 import { success } from '../../utils/success';
 import { resourceNotFound } from '../../utils/resource-not-found';
 import { internalError } from '../../utils/internal-error';

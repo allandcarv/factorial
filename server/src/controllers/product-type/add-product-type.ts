@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductGroup } from '../../models/product-groups';
+import { getProductGroup } from '../../models/product-group';
 import { badRequest } from '../../utils/bad-request';
 import type { NewProductType, ProductType } from '../../types/product-type';
 import { addProductType } from '../../models/product-types';

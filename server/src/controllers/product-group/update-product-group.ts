@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import {
   getProductGroup,
   updateProductGroup,
-} from '../../models/product-groups';
+} from '../../models/product-group';
 import { notFound } from '../../utils/not-found';
 import type { UpdateProductGroup } from '../../types/product-group';
 import { success } from '../../utils/success';

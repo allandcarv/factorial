@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import type { NewProductGroup } from '../../types/product-group';
-import { addProductGroup } from '../../models/product-groups';
+import { addProductGroup } from '../../models/product-group';
 import { created } from '../../utils/created';
 import { internalError } from '../../utils/internal-error';
 

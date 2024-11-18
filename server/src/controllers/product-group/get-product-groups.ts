@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { getProductGroups } from '../../models/product-groups';
+import { getProductGroups } from '../../models/product-group';
 import { internalError } from '../../utils/internal-error';
 import { success } from '../../utils/success';
 

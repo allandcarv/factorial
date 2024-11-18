@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import {
   deleteProductGroup,
   getProductGroup,
-} from '../../models/product-groups';
+} from '../../models/product-group';
 import { notFound } from '../../utils/not-found';
 import { internalError } from '../../utils/internal-error';
 import { noContent } from '../../utils/no-content';
