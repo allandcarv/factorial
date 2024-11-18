@@ -1,13 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type {
-  NewProduct,
-  Product,
-  ProductDTO,
-  UpdateProduct,
-} from '../types/product';
-import { getProductType } from './product-types';
+import type { NewProduct, ProductDTO, UpdateProduct } from '../types/product';
 import { uuid } from '../utils/uuid';
 
 const PRODUCTS_FILE = path.join(__dirname, '..', '..', 'db', 'products.json');

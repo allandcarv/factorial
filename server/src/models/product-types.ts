@@ -6,7 +6,6 @@ import type {
   ProductTypeDTO,
   UpdateProductType,
 } from '../types/product-type';
-import { getProductGroup } from './product-groups';
 import { uuid } from '../utils/uuid';
 
 const PRODUCT_TYPES_FILE = path.join(
@@ -28,6 +27,7 @@ export const getProductTypes = async (): Promise<ProductTypeDTO[]> => {
     return productTypes;
   } catch (err) {
     console.error(err);
+
     throw new Error(`Error on getting product types: ${err}`);
   }
 };
@@ -80,10 +80,6 @@ export const updateProductType = async (
 ): Promise<ProductTypeDTO> => {
   try {
     const productTypes = await getProductTypes();
-
-    const productTypeIdx = productTypes.findIndex(
-      (productType) => productType.id === updatedProductType.id
-    );
 
     const productTypeToUpdate = productTypes.find(
       (productType) => productType.id === updatedProductType.id

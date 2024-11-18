@@ -5,13 +5,13 @@ import {
   getProductGroupController,
   getProductGroupsController,
   updateProductGroupController,
-} from '../controllers/product-groups';
+} from '../controllers/product-group';
 import {
   addProductTypeController,
   getProductTypeController,
   getProductTypesController,
   updateProductTypeController,
-} from '../controllers/product-types';
+} from '../controllers/product-type';
 import {
   addProductController,
   getProductController,
