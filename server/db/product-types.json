@@ -1,1 +1,32 @@
-[{"id":"45b578ca-00aa-4ab5-a8d2-3dedeff70e81","title":"Frame Type","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"Frame Type"},{"id":"bbaa9be4-dc59-4eb0-ad05-61c9929c0946","title":"Frame Finish","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"Frame Finish"},{"id":"c12726ba-2fca-4ca7-b45d-7484f7f785ee","title":"Wheels","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"Wheels"},{"id":"129e0ea1-fab3-4172-b75e-2c9c99920b94","title":"Rim Color","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"Rim Color"},{"id":"df4a0f56-e749-47cc-8cd1-5668b95a7f0b","title":"Chain","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"Chain"},{"id":"2a426a03-8fd0-41bd-9f18-a00ed9dc4233","title":"Some title","product_group":"62a70125-d138-466e-ae9d-864f6fa08a42","description":"My new product type description"}]
+[
+  {
+    "id": "45b578ca-00aa-4ab5-a8d2-3dedeff70e81",
+    "title": "Frame Type",
+    "product_group": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "description": "Frame Type"
+  },
+  {
+    "id": "bbaa9be4-dc59-4eb0-ad05-61c9929c0946",
+    "title": "Frame Finish",
+    "product_group": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "description": "Frame Finish"
+  },
+  {
+    "id": "c12726ba-2fca-4ca7-b45d-7484f7f785ee",
+    "title": "Wheels",
+    "product_group": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "description": "Wheels"
+  },
+  {
+    "id": "129e0ea1-fab3-4172-b75e-2c9c99920b94",
+    "title": "Rim Color",
+    "product_group": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "description": "Rim Color"
+  },
+  {
+    "id": "df4a0f56-e749-47cc-8cd1-5668b95a7f0b",
+    "title": "Chain",
+    "product_group": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "description": "Chain"
+  }
+]

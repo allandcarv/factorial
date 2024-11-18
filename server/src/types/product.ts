@@ -20,3 +20,7 @@ export interface NewProduct
   extends Pick<Product, 'description' | 'stock' | 'title'> {
   productType: string;
 }
+
+export interface UpdateProduct extends Partial<NewProduct> {
+  id: string;
+}

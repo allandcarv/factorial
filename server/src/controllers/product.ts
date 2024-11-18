@@ -1,15 +1,26 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
-import { addProduct, getProduct, getProducts } from '../models/product';
+import {
+  addProduct,
+  getProduct,
+  getProducts,
+  updateProduct,
+} from '../models/product';
 import { getProductType, getProductTypes } from '../models/product-types';
 import type { ProductTypeDTO } from '../types/product-type';
-import type { NewProduct, Product } from '../types/product';
+import type {
+  NewProduct,
+  Product,
+  ProductDTO,
+  UpdateProduct,
+} from '../types/product';
 import { internalError } from '../utils/internal-error';
 import { resourceNotFound } from '../utils/resource-not-found';
 import { badRequest } from '../utils/bad-request';
 import { created } from '../utils/created';
 import { success } from '../utils/success';
+import { notFound } from '../utils/not-found';
 
 export const getProductsController = async (_req: Request, res: Response) => {
   try {
@@ -75,14 +86,6 @@ export const getProductController = async (req: Request, res: Response) => {
 
 export const addProductController = async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      console.log(errors.array());
-      badRequest(res, 'All fields are required');
-      return;
-    }
-
     const productType = await getProductType(req.body.productType);
 
     if (!productType) {
@@ -111,6 +114,57 @@ export const addProductController = async (req: Request, res: Response) => {
     };
 
     created(res, product);
+  } catch (err) {
+    internalError(res);
+  }
+};
+
+export const updateProductController = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.id;
+
+    const product = await getProduct(productId);
+
+    if (!product) {
+      notFound(res, 'Product Not Found');
+      return;
+    }
+
+    let productType: ProductTypeDTO | undefined;
+
+    if (req.body.productType) {
+      productType = await getProductType(req.body.productType);
+
+      if (!productType) {
+        badRequest(res, 'Product Type Not Found');
+        return;
+      }
+    }
+
+    const newProduct: UpdateProduct = {
+      id: req.params.id,
+      title: req.body.title,
+      productType: req.body.productType,
+      description: req.body.description,
+      stock: req.body.stock,
+    };
+
+    const updatedProduct = await updateProduct(newProduct);
+
+    productType = await getProductType(updatedProduct.product_type);
+
+    const result: Product = {
+      id: updatedProduct.id,
+      title: updatedProduct.title,
+      productType: {
+        id: productType?.id,
+        title: productType?.title,
+      },
+      description: updatedProduct.description,
+      stock: updatedProduct.stock,
+    };
+
+    success(res, result);
   } catch (err) {
     internalError(res);
   }

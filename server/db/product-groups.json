@@ -1,1 +1,7 @@
-[{"id":"62a70125-d138-466e-ae9d-864f6fa08a42","title":"bicycles","description":"Products related to bicycles"},{"id":"a6f12650-cf30-40ce-a7d5-e5ef30809258","title":"My new product group title","description":"My new product group description another"},{"id":"2b0369fb-41ad-4c96-bbb1-ccb5ddb31b13","title":"My new product group","description":"My new product group description"}]
+[
+  {
+    "id": "62a70125-d138-466e-ae9d-864f6fa08a42",
+    "title": "bicycles",
+    "description": "Products related to bicycles"
+  }
+]

@@ -8,3 +8,12 @@ export const validateNewProduct = [
     .notEmpty()
     .custom((stock) => typeof stock === 'boolean'),
 ];
+
+export const validateUpdateProduct = [
+  body('title').optional().isString().trim(),
+  body('description').optional().isString().trim(),
+  body('productType').optional().isString().trim(),
+  body('stock')
+    .optional()
+    .custom((stock) => typeof stock === 'boolean'),
+];

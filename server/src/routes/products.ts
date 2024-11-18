@@ -16,6 +16,7 @@ import {
   addProductController,
   getProductController,
   getProductsController,
+  updateProductController,
 } from '../controllers/product';
 import {
   validateNewProductGroup,
@@ -25,7 +26,10 @@ import {
   validateNewProductType,
   validateUpdateProductType,
 } from '../validators/product-type';
-import { validateNewProduct } from '../validators/product';
+import {
+  validateNewProduct,
+  validateUpdateProduct,
+} from '../validators/product';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 
 const productsRouter = Router();
@@ -71,6 +75,12 @@ productsRouter.post(
   validateNewProduct,
   fieldsErrorValidation,
   addProductController
+);
+productsRouter.patch(
+  '/products/:id',
+  validateUpdateProduct,
+  fieldsErrorValidation,
+  updateProductController
 );
 
 export { productsRouter };
