@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
 import type { ProductTypeDTO } from '../../types/product-type';
-import { PRODUCT_TYPES_FILE } from './constants';
+import { PRODUCT_TYPES_FILE } from '../../shared/constants';
 
 export const getProductTypes = async (): Promise<ProductTypeDTO[]> => {
   try {

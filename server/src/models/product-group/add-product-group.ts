@@ -5,8 +5,8 @@ import type {
   ProductGroupDTO,
 } from '../../types/product-group';
 import { uuid } from '../../utils/uuid';
-import { PRODUCT_GROUPS_FILE } from './constants';
 import { getProductGroups } from './get-product-groups';
+import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
 
 export const addProductGroup = async (
   newProductGroup: NewProductGroup

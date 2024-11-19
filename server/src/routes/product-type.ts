@@ -5,33 +5,33 @@ import {
   getProductTypesController,
   addProductTypeController,
   updateProductTypeController,
-} from '../../controllers/product-type';
-import { fieldsErrorValidation } from '../../middlewares/fields-error-validation';
+} from '../controllers/product-type';
+import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import {
   validateNewProductType,
   validateUpdateProductType,
-} from '../../validators/product-type';
-import { deleteProductTypeController } from '../../controllers/product-type/delete-product-type';
+} from '../validators/product-type';
+import { deleteProductTypeController } from '../controllers/product-type/delete-product-type';
 
 const productTypesRouter = Router();
 
-productTypesRouter.get('/types/:id', getProductTypeController);
-productTypesRouter.get('/types', getProductTypesController);
+productTypesRouter.get('/product-types/:id', getProductTypeController);
+productTypesRouter.get('/product-types', getProductTypesController);
 
 productTypesRouter.post(
-  '/types',
+  '/product-types',
   validateNewProductType,
   fieldsErrorValidation,
   addProductTypeController
 );
 
 productTypesRouter.patch(
-  '/types/:id',
+  '/product-types/:id',
   validateUpdateProductType,
   fieldsErrorValidation,
   updateProductTypeController
 );
 
-productTypesRouter.delete('/types/:id', deleteProductTypeController);
+productTypesRouter.delete('/product-types/:id', deleteProductTypeController);
 
 export { productTypesRouter };

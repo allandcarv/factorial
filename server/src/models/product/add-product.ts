@@ -2,8 +2,8 @@ import fs from 'node:fs/promises';
 
 import type { NewProduct, ProductDTO } from '../../types/product';
 import { uuid } from '../../utils/uuid';
-import { PRODUCTS_FILE } from './constants';
 import { getProducts } from './get-products';
+import { PRODUCTS_FILE } from '../../shared/constants';
 
 export const addProduct = async (
   newProduct: NewProduct

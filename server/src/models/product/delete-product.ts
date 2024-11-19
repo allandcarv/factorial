@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
-import { PRODUCTS_FILE } from './constants';
 import { getProducts } from './get-products';
+import { PRODUCTS_FILE } from '../../shared/constants';
 
 export const deleteProduct = async (productId: string): Promise<void> => {
   try {

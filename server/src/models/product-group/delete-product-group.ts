@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
-import { PRODUCT_GROUPS_FILE } from './constants';
 import { getProductGroups } from './get-product-groups';
+import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
 
 export const deleteProductGroup = async (
   productGroupId: string

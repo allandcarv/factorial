@@ -1,24 +1,19 @@
 import { Router } from 'express';
 
-import { fieldsErrorValidation } from '../../middlewares/fields-error-validation';
+import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import {
   validateNewProduct,
   validateUpdateProduct,
-} from '../../validators/product';
+} from '../validators/product';
 import {
   addProductController,
   getProductController,
   getProductsController,
   updateProductController,
-} from '../../controllers/product';
-import { productGroupsRouter } from './product-group';
-import { productTypesRouter } from './product-type';
-import { deleteProductController } from '../../controllers/product/delete-product';
+} from '../controllers/product';
+import { deleteProductController } from '../controllers/product/delete-product';
 
 const productsRouter = Router();
-
-productsRouter.use('/products', productGroupsRouter);
-productsRouter.use('/products', productTypesRouter);
 
 productsRouter.get('/products/:id', getProductController);
 productsRouter.get('/products', getProductsController);

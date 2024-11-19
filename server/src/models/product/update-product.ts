@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises';
 
 import type { UpdateProduct, ProductDTO } from '../../types/product';
-import { PRODUCTS_FILE } from './constants';
 import { getProducts } from './get-products';
+import { PRODUCTS_FILE } from '../../shared/constants';
 
 export const updateProduct = async (
   updatedProduct: UpdateProduct

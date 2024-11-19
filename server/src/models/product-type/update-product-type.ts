@@ -4,8 +4,8 @@ import type {
   UpdateProductType,
   ProductTypeDTO,
 } from '../../types/product-type';
-import { PRODUCT_TYPES_FILE } from './constants';
 import { getProductTypes } from './get-product-types';
+import { PRODUCT_TYPES_FILE } from '../../shared/constants';
 
 export const updateProductType = async (
   updatedProductType: UpdateProductType

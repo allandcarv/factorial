@@ -4,8 +4,8 @@ import type {
   UpdateProductGroup,
   ProductGroupDTO,
 } from '../../types/product-group';
-import { PRODUCT_GROUPS_FILE } from './constants';
 import { getProductGroups } from './get-product-groups';
+import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
 
 export const updateProductGroup = async (
   updatedProductGroup: UpdateProductGroup
