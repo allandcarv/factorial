@@ -4,6 +4,7 @@ import {
   addProductGroupController,
   getProductGroupController,
   getProductGroupsController,
+  getProductTypesByGroupController,
   updateProductGroupController,
 } from '../controllers/product-group';
 import {
@@ -12,7 +13,6 @@ import {
 } from '../validators/product-group';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import { deleteProductGroupController } from '../controllers/product-group/delete-product-group';
-import { getProductTypesByGroupController } from '../controllers/product-group/get-product-types-by-group';
 
 const productGroupsRouter = Router();
 

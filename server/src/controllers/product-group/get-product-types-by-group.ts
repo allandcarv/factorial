@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { getProductGroup } from '../../models/product-group';
+import { getProductGroup, getTypesByGroup } from '../../models/product-group';
 import { notFound } from '../../utils/not-found';
-import { getTypesByGroup } from '../../models/product-group/get-types-by-group';
 import type { ProductType } from '../../types/product-type';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';

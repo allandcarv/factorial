@@ -5,6 +5,7 @@ import {
   getProductTypesController,
   addProductTypeController,
   updateProductTypeController,
+  getProductsByTypeController,
 } from '../controllers/product-type';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import {
@@ -15,6 +16,10 @@ import { deleteProductTypeController } from '../controllers/product-type/delete-
 
 const productTypesRouter = Router();
 
+productTypesRouter.get(
+  '/product-types/:id/products',
+  getProductsByTypeController
+);
 productTypesRouter.get('/product-types/:id', getProductTypeController);
 productTypesRouter.get('/product-types', getProductTypesController);
 
