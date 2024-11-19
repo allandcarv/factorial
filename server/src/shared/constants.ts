@@ -23,3 +23,11 @@ export const PRODUCTS_FILE = path.join(
   'db',
   'products.json'
 );
+
+export const PRODUCT_RESTRICTIONS_FILE = path.join(
+  __dirname,
+  '..',
+  '..',
+  'db',
+  'product-restrictions.json'
+);
