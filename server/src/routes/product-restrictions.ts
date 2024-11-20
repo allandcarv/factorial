@@ -4,8 +4,14 @@ import { getProductRestrictionsController } from '../controllers/product-restric
 import { validateNewProductRestriction } from '../validators/product-restriction';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import { addProductRestrictionController } from '../controllers/product-restrictions/add-product-restriction';
+import { getProductRestrictionsBySourceProductController } from '../controllers/product-restrictions/get-product-restrictions-by-source-product';
 
 const productRestrictionsRouter = Router();
+
+productRestrictionsRouter.get(
+  '/product-restrictions/source-product/:id',
+  getProductRestrictionsBySourceProductController
+);
 
 productRestrictionsRouter.get(
   '/product-restrictions',
