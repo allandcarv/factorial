@@ -4,12 +4,11 @@ import { badRequest } from '../../utils/bad-request';
 import { getProduct } from '../../models/product';
 import { notFound } from '../../utils/not-found';
 import { internalError } from '../../utils/internal-error';
-import type {
-  NewProductRestriction,
-  ProductRestriction,
-} from '../../types/product-restriction';
+import type { NewProductRestriction } from '../../types/product-restriction';
 import { addProductRestriction } from '../../models/product-restrictions/add-product-restriction';
 import { created } from '../../utils/created';
+import { getProductGroupByType } from '../../models/product-group/get-product-group-by-type';
+import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
 
 export const addProductRestrictionController = async (
   req: Request,
@@ -26,7 +25,6 @@ export const addProductRestrictionController = async (
     }
 
     const sourceProduct = await getProduct(sourceProductId);
-
     if (!sourceProduct) {
       notFound(res, 'Source Product Not Found');
 
@@ -34,27 +32,26 @@ export const addProductRestrictionController = async (
     }
 
     const restrictedProduct = await getProduct(restrictedProductId);
-
     if (!restrictedProduct) {
       notFound(res, 'Restricted Product Not Found');
 
       return;
     }
 
+    const productGroup = await getProductGroupByType(
+      restrictedProduct.product_type
+    );
+
     const productRestriction: NewProductRestriction = {
       sourceProduct: sourceProductId,
-      restrictedType: restrictedProduct.product_type,
+      productGroup: productGroup.id,
       restrictedProduct: restrictedProductId,
+      restrictedType: restrictedProduct.product_type,
     };
 
     const result = await addProductRestriction(productRestriction);
 
-    const newProductRestriction: ProductRestriction = {
-      id: result.id,
-      sourceProduct: result.source_product,
-      restrictedType: result.restricted_type,
-      restrictedProduct: result.restricted_product,
-    };
+    const newProductRestriction = productRestrictionAdapter(result);
 
     created(res, newProductRestriction);
   } catch (err) {

@@ -4,6 +4,7 @@ import { internalError } from '../../utils/internal-error';
 import { getProductRestrictions } from '../../models/product-restrictions/get-product-restrictions';
 import type { ProductRestriction } from '../../types/product-restriction';
 import { success } from '../../utils/success';
+import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
 
 export const getProductRestrictionsController = async (
   _req: Request,
@@ -13,12 +14,9 @@ export const getProductRestrictionsController = async (
     const productRestrictions = await getProductRestrictions();
 
     const parsedProductRestrictions: ProductRestriction[] =
-      productRestrictions.map((productRestriction) => ({
-        id: productRestriction.id,
-        sourceProduct: productRestriction.source_product,
-        restrictedType: productRestriction.restricted_type,
-        restrictedProduct: productRestriction.restricted_product,
-      }));
+      productRestrictions.map((productRestriction) =>
+        productRestrictionAdapter(productRestriction)
+      );
 
     success(res, parsedProductRestrictions);
   } catch (err) {
