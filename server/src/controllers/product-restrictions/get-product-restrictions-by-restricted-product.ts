@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { internalError } from '../../utils/internal-error';
 import { notFound } from '../../utils/not-found';
-import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
+import { productRestrictionAdapter } from '../../adapters/product-restrictions';
 import { success } from '../../utils/success';
 import { getProduct } from '../../models/product';
 import { getProductRestrictionsByRestrictedProduct } from '../../models/product-restrictions';

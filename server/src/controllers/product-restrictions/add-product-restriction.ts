@@ -8,7 +8,7 @@ import type { NewProductRestriction } from '../../types/product-restriction';
 import { addProductRestriction } from '../../models/product-restrictions';
 import { created } from '../../utils/created';
 import { getProductGroupByType } from '../../models/product-group/get-product-group-by-type';
-import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
+import { productRestrictionAdapter } from '../../adapters/product-restrictions';
 
 export const addProductRestrictionController = async (
   req: Request,

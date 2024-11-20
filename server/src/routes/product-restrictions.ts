@@ -1,15 +1,17 @@
 import { Router } from 'express';
 
-import { getProductRestrictionsController } from '../controllers/product-restrictions/get-product-restrictions';
 import { validateNewProductRestriction } from '../validators/product-restriction';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
-import { addProductRestrictionController } from '../controllers/product-restrictions/add-product-restriction';
-import { getProductRestrictionsBySourceProductController } from '../controllers/product-restrictions/get-product-restrictions-by-source-product';
-import { getProductRestrictionsByRestrictedTypeController } from '../controllers/product-restrictions/get-product-restrictions-by-restricted-type';
-import { getProductRestrictionsByRestrictedProductController } from '../controllers/product-restrictions/get-product-restrictions-by-restricted-product';
-import { getProductRestrictionsByGroupController } from '../controllers/product-restrictions/get-product-restrictions-by-group';
-import { getProductRestrictionController } from '../controllers/product-restrictions/get-product-restriction';
-import { deleteProductRestrictionController } from '../controllers/product-restrictions/delete-product-restriction';
+import {
+  addProductRestrictionController,
+  deleteProductRestrictionController,
+  getProductRestrictionController,
+  getProductRestrictionsByGroupController,
+  getProductRestrictionsByRestrictedProductController,
+  getProductRestrictionsByRestrictedTypeController,
+  getProductRestrictionsBySourceProductController,
+  getProductRestrictionsController,
+} from '../controllers/product-restrictions';
 
 const productRestrictionsRouter = Router();
 
