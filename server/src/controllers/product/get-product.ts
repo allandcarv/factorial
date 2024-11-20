@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
 import { getProduct } from '../../models/product';
-import { resourceNotFound } from '../../utils/resource-not-found';
 import { getProductType } from '../../models/product-type';
 import type { Product } from '../../types/product';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
+import { notFound } from '../../utils/not-found';
 
 export const getProductController = async (req: Request, res: Response) => {
   try {
@@ -13,7 +13,7 @@ export const getProductController = async (req: Request, res: Response) => {
     const product = await getProduct(id);
 
     if (!product) {
-      resourceNotFound(res, 'Product not found');
+      notFound(res, 'Product not found');
 
       return;
     }

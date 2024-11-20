@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import { getProductGroup } from '../../models/product-group';
 import { success } from '../../utils/success';
-import { resourceNotFound } from '../../utils/resource-not-found';
 import { internalError } from '../../utils/internal-error';
+import { notFound } from '../../utils/not-found';
 
 export const getProductGroupController = async (
   req: Request,
@@ -17,7 +17,7 @@ export const getProductGroupController = async (
     if (productGroup) {
       success(res, productGroup);
     } else {
-      resourceNotFound(res, 'Product Group Not Found');
+      notFound(res, 'Product Group Not Found');
     }
   } catch (err) {
     internalError(res);

@@ -8,6 +8,8 @@ import { getProductRestrictionsBySourceProductController } from '../controllers/
 import { getProductRestrictionsByRestrictedTypeController } from '../controllers/product-restrictions/get-product-restrictions-by-restricted-type';
 import { getProductRestrictionsByRestrictedProductController } from '../controllers/product-restrictions/get-product-restrictions-by-restricted-product';
 import { getProductRestrictionsByGroupController } from '../controllers/product-restrictions/get-product-restrictions-by-group';
+import { getProductRestrictionController } from '../controllers/product-restrictions/get-product-restriction';
+import { deleteProductRestrictionController } from '../controllers/product-restrictions/delete-product-restriction';
 
 const productRestrictionsRouter = Router();
 
@@ -28,6 +30,10 @@ productRestrictionsRouter.get(
   getProductRestrictionsBySourceProductController
 );
 productRestrictionsRouter.get(
+  '/product-restrictions/:id',
+  getProductRestrictionController
+);
+productRestrictionsRouter.get(
   '/product-restrictions',
   getProductRestrictionsController
 );
@@ -37,6 +43,11 @@ productRestrictionsRouter.post(
   validateNewProductRestriction,
   fieldsErrorValidation,
   addProductRestrictionController
+);
+
+productRestrictionsRouter.delete(
+  '/product-restrictions/:id',
+  deleteProductRestrictionController
 );
 
 export { productRestrictionsRouter };

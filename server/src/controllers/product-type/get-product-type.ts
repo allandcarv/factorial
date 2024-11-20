@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
 import { getProductType } from '../../models/product-type';
-import { resourceNotFound } from '../../utils/resource-not-found';
 import { getProductGroup } from '../../models/product-group';
 import type { ProductType } from '../../types/product-type';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
+import { notFound } from '../../utils/not-found';
 
 export const getProductTypeController = async (req: Request, res: Response) => {
   try {
@@ -14,7 +14,8 @@ export const getProductTypeController = async (req: Request, res: Response) => {
     const productType = await getProductType(id);
 
     if (!productType) {
-      resourceNotFound(res, 'Product Type Not Found');
+      notFound(res, 'Product Type Not Found');
+
       return;
     }
 

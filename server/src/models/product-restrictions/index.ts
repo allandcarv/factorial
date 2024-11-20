@@ -1,4 +1,6 @@
 export { addProductRestriction } from './add-product-restriction';
+export { deleteProductRestriction } from './delete-product-restriction';
+export { getProductRestriction } from './get-product-restriction';
 export { getProductRestrictions } from './get-product-restrictions';
 export { getProductRestrictionsByGroup } from './get-product-restrictions-by-group';
 export { getProductRestrictionsByRestrictedProduct } from './get-product-restrictions-by-restricted-product';
