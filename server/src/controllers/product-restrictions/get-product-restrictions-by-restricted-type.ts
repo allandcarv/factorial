@@ -5,7 +5,7 @@ import { notFound } from '../../utils/not-found';
 import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
 import { success } from '../../utils/success';
 import { getProductType } from '../../models/product-type';
-import { getProductRestrictionsByRestrictedType } from '../../models/product-restrictions/get-product-restrictions-by-restricted-type';
+import { getProductRestrictionsByRestrictedType } from '../../models/product-restrictions';
 
 export const getProductRestrictionsByRestrictedTypeController = async (
   req: Request,

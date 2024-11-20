@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { internalError } from '../../utils/internal-error';
 import { getProduct } from '../../models/product';
 import { notFound } from '../../utils/not-found';
-import { getProductRestrictionsBySourceProduct } from '../../models/product-restrictions/get-product-restrictions-by-source-product';
+import { getProductRestrictionsBySourceProduct } from '../../models/product-restrictions';
 import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
 import { success } from '../../utils/success';
 

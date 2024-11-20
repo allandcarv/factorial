@@ -5,7 +5,7 @@ import { getProduct } from '../../models/product';
 import { notFound } from '../../utils/not-found';
 import { internalError } from '../../utils/internal-error';
 import type { NewProductRestriction } from '../../types/product-restriction';
-import { addProductRestriction } from '../../models/product-restrictions/add-product-restriction';
+import { addProductRestriction } from '../../models/product-restrictions';
 import { created } from '../../utils/created';
 import { getProductGroupByType } from '../../models/product-group/get-product-group-by-type';
 import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';

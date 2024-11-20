@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { internalError } from '../../utils/internal-error';
-import { getProductRestrictions } from '../../models/product-restrictions/get-product-restrictions';
+import { getProductRestrictions } from '../../models/product-restrictions';
 import type { ProductRestriction } from '../../types/product-restriction';
 import { success } from '../../utils/success';
 import { productRestrictionAdapter } from '../../adapters/product-restrictions/product-restriction';
