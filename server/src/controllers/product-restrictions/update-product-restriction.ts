@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { internalError } from '../../utils/internal-error';
 import { updateProductRestriction } from '../../models/product-restrictions';

@@ -1,10 +1,7 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
+
 import { internalError } from '../../utils/internal-error';
-import {
-  getProductRestriction,
-  deleteProductRestriction,
-} from '../../models/product-restrictions';
-import { notFound } from '../../utils/not-found';
+import { deleteProductRestriction } from '../../models/product-restrictions';
 import { noContent } from '../../utils/no-content';
 
 export const deleteProductRestrictionController = async (
@@ -13,16 +10,6 @@ export const deleteProductRestrictionController = async (
 ) => {
   try {
     const productRestrictionId = req.params.id;
-
-    const productRestriction = await getProductRestriction(
-      productRestrictionId
-    );
-
-    if (!productRestriction) {
-      notFound(res, 'Product Restriction Not Found');
-
-      return;
-    }
 
     await deleteProductRestriction(productRestrictionId);
 

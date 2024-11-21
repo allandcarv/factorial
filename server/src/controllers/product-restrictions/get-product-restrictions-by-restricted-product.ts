@@ -1,10 +1,8 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { internalError } from '../../utils/internal-error';
-import { notFound } from '../../utils/not-found';
 import { productRestrictionAdapter } from '../../adapters/product-restriction';
 import { success } from '../../utils/success';
-import { getProduct } from '../../models/product';
 import { getProductRestrictionsByRestrictedProduct } from '../../models/product-restrictions';
 
 export const getProductRestrictionsByRestrictedProductController = async (
@@ -13,14 +11,6 @@ export const getProductRestrictionsByRestrictedProductController = async (
 ) => {
   try {
     const productId = req.params.id;
-
-    const product = await getProduct(productId);
-
-    if (!product) {
-      notFound(res, 'Product Not Found');
-
-      return;
-    }
 
     const productRestrictions = await getProductRestrictionsByRestrictedProduct(
       productId

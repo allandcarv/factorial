@@ -1,10 +1,8 @@
 import { Request, Response } from 'express';
 
 import { internalError } from '../../utils/internal-error';
-import { notFound } from '../../utils/not-found';
 import { productRestrictionAdapter } from '../../adapters/product-restriction';
 import { success } from '../../utils/success';
-import { getProductGroup } from '../../models/product-group';
 import { getProductRestrictionsByGroup } from '../../models/product-restrictions';
 
 export const getProductRestrictionsByGroupController = async (
@@ -13,14 +11,6 @@ export const getProductRestrictionsByGroupController = async (
 ) => {
   try {
     const groupId = req.params.id;
-
-    const productGroup = await getProductGroup(groupId);
-
-    if (!productGroup) {
-      notFound(res, 'Product Group Not Found');
-
-      return;
-    }
 
     const productRestrictions = await getProductRestrictionsByGroup(groupId);
 

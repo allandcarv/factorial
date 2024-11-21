@@ -17,26 +17,34 @@ import {
 } from '../controllers/product-restrictions';
 import {
   addParamsValidator,
+  productRestrictionIdValidator,
   updateParamsValidator,
 } from '../middlewares/product-restriction';
 import { updateProductRestrictionController } from '../controllers/product-restrictions/update-product-restriction';
+import { productGroupIdValidator } from '../middlewares/product-group';
+import { productIdValidator } from '../middlewares/product';
+import { productTypeIdValidator } from '../middlewares/product-type';
 
 const productRestrictionsRouter = Router();
 
 productRestrictionsRouter.get(
   '/product-restrictions/product-group/:id',
+  productGroupIdValidator,
   getProductRestrictionsByGroupController
 );
 productRestrictionsRouter.get(
   '/product-restrictions/restricted-product/:id',
+  productIdValidator,
   getProductRestrictionsByRestrictedProductController
 );
 productRestrictionsRouter.get(
   '/product-restrictions/restricted-type/:id',
+  productTypeIdValidator,
   getProductRestrictionsByRestrictedTypeController
 );
 productRestrictionsRouter.get(
   '/product-restrictions/source-product/:id',
+  productIdValidator,
   getProductRestrictionsBySourceProductController
 );
 productRestrictionsRouter.get(
@@ -66,6 +74,7 @@ productRestrictionsRouter.patch(
 
 productRestrictionsRouter.delete(
   '/product-restrictions/:id',
+  productRestrictionIdValidator,
   deleteProductRestrictionController
 );
 
