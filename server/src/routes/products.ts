@@ -12,6 +12,10 @@ import {
   getProductsController,
   updateProductController,
 } from '../controllers/product';
+import {
+  productIdValidator,
+  updateParamsValidator,
+} from '../middlewares/product';
 
 const productsRouter = Router();
 
@@ -29,9 +33,15 @@ productsRouter.patch(
   '/products/:id',
   validateUpdateProduct,
   fieldsErrorValidation,
+  productIdValidator,
+  updateParamsValidator,
   updateProductController
 );
 
-productsRouter.delete('/products/:id', deleteProductController);
+productsRouter.delete(
+  '/products/:id',
+  productIdValidator,
+  deleteProductController
+);
 
 export { productsRouter };

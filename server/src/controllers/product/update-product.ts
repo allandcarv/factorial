@@ -1,62 +1,32 @@
 import { Request, Response } from 'express';
 
-import { getProduct, updateProduct } from '../../models/product';
-import { notFound } from '../../utils/not-found';
-import type { ProductTypeDTO } from '../../types/product-type';
+import { updateProduct } from '../../models/product';
 import { getProductType } from '../../models/product-type';
 import type { UpdateProduct, Product } from '../../types/product';
-import { badRequest } from '../../utils/bad-request';
 import { internalError } from '../../utils/internal-error';
 import { success } from '../../utils/success';
+import { productAdapter } from '../../adapters/product';
 
 export const updateProductController = async (req: Request, res: Response) => {
   try {
-    const productId = req.params.id;
-
-    const product = await getProduct(productId);
-
-    if (!product) {
-      notFound(res, 'Product Not Found');
-      return;
-    }
-
-    let productType: ProductTypeDTO | undefined;
-
-    if (req.body.productType) {
-      productType = await getProductType(req.body.productType);
-
-      if (!productType) {
-        badRequest(res, 'Product Type Not Found');
-        return;
-      }
-    }
-
     const newProduct: UpdateProduct = {
       id: req.params.id,
-      title: req.body.title,
-      productType: req.body.productType,
       description: req.body.description,
+      price: req.body.price,
+      productType: req.body.productType,
       stock: req.body.stock,
+      title: req.body.title,
     };
 
-    const updatedProduct = await updateProduct(newProduct);
+    const product = await updateProduct(newProduct);
 
-    productType = await getProductType(updatedProduct.product_type);
+    const productType = await getProductType(product.product_type);
 
     if (!productType) {
       throw new Error('Product Type Not Found');
     }
 
-    const result: Product = {
-      id: updatedProduct.id,
-      title: updatedProduct.title,
-      productType: {
-        id: productType.id,
-        title: productType.title,
-      },
-      description: updatedProduct.description,
-      stock: updatedProduct.stock,
-    };
+    const result = productAdapter(product, productType);
 
     success(res, result);
   } catch (err) {

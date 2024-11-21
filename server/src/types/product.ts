@@ -6,6 +6,7 @@ export interface ProductDTO {
   product_type: string;
   description: string;
   stock: boolean;
+  price: number;
 }
 
 export interface Product {
@@ -14,10 +15,10 @@ export interface Product {
   productType: Pick<ProductTypeDTO, 'id' | 'title'>;
   description: string;
   stock: boolean;
+  price: number;
 }
 
-export interface NewProduct
-  extends Pick<ProductDTO, 'description' | 'stock' | 'title'> {
+export interface NewProduct extends Omit<ProductDTO, 'id' | 'product_type'> {
   productType: string;
 }
 

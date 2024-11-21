@@ -10,11 +10,11 @@ export const updateParamsValidator = async (
   next: NextFunction
 ) => {
   try {
-    if (req.body.productGroup) {
-      const productGroup = await getProductGroup(req.body.productGroup);
+    if (req.body.productType) {
+      const productType = await getProductGroup(req.body.productType);
 
-      if (!productGroup) {
-        badRequest(res, 'Product Group Not Found');
+      if (!productType) {
+        badRequest(res, 'Product Type Not Found');
 
         return;
       }

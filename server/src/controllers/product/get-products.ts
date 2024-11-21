@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { getProducts } from '../../models/product';
 import { getProductTypes } from '../../models/product-type';
 import type { ProductTypeDTO } from '../../types/product-type';
-import type { Product } from '../../types/product';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
+import { productAdapter } from '../../adapters/product';
 
 export const getProductsController = async (_req: Request, res: Response) => {
   try {
@@ -18,23 +18,14 @@ export const getProductsController = async (_req: Request, res: Response) => {
       mappedProductTypes.set(productType.id, productType)
     );
 
-    const result: Product[] = products.map((product) => {
+    const result = products.map((product) => {
       const productType = mappedProductTypes.get(product.product_type);
 
       if (!productType) {
         throw new Error('Product Type Not Found');
       }
 
-      return {
-        description: product.description,
-        id: product.id,
-        productType: {
-          id: productType.id,
-          title: productType.title,
-        },
-        stock: product.stock,
-        title: product.title,
-      };
+      return productAdapter(product, productType);
     });
 
     success(res, result);

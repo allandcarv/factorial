@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { getProduct } from '../../models/product';
 import { getProductType } from '../../models/product-type';
-import type { Product } from '../../types/product';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
 import { notFound } from '../../utils/not-found';
+import { productAdapter } from '../../adapters/product';
 
 export const getProductController = async (req: Request, res: Response) => {
   try {
@@ -24,16 +24,7 @@ export const getProductController = async (req: Request, res: Response) => {
       throw new Error('Product Type Not Found');
     }
 
-    const result: Product = {
-      description: product.description,
-      id: product.id,
-      productType: {
-        id: productType.id,
-        title: productType.title,
-      },
-      stock: product.stock,
-      title: product.title,
-    };
+    const result = productAdapter(product, productType);
 
     success(res, result);
   } catch (err) {

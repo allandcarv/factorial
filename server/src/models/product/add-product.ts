@@ -1,23 +1,12 @@
 import fs from 'node:fs/promises';
 
-import type { NewProduct, ProductDTO } from '../../types/product';
-import { uuid } from '../../utils/uuid';
+import type { ProductDTO } from '../../types/product';
 import { getProducts } from './get-products';
 import { PRODUCTS_FILE } from '../../shared/constants';
 
-export const addProduct = async (
-  newProduct: NewProduct
-): Promise<ProductDTO> => {
+export const addProduct = async (product: ProductDTO): Promise<ProductDTO> => {
   try {
     const products = await getProducts();
-
-    const product: ProductDTO = {
-      id: uuid(),
-      title: newProduct.title,
-      product_type: newProduct.productType,
-      description: newProduct.description,
-      stock: newProduct.stock,
-    };
 
     products.push(product);
 
