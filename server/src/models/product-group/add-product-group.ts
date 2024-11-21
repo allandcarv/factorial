@@ -4,27 +4,28 @@ import type {
   NewProductGroup,
   ProductGroupDTO,
 } from '../../types/product-group';
-import { uuid } from '../../utils/uuid';
 import { getProductGroups } from './get-product-groups';
 import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
+import { productGroupDTOAdapter } from '../../adapters/product-group';
 
 export const addProductGroup = async (
-  newProductGroup: NewProductGroup
+  productGroup: NewProductGroup
 ): Promise<ProductGroupDTO> => {
   try {
     const productGroups = await getProductGroups();
 
-    const productGroup: ProductGroupDTO = {
-      id: uuid(),
-      title: newProductGroup.title,
-      description: newProductGroup.description,
+    const newProductGroup: NewProductGroup = {
+      title: productGroup.title,
+      description: productGroup.description,
     };
 
-    productGroups.push(productGroup);
+    const result = productGroupDTOAdapter(newProductGroup);
+
+    productGroups.push(result);
 
     await fs.writeFile(PRODUCT_GROUPS_FILE, JSON.stringify(productGroups));
 
-    return productGroup;
+    return result;
   } catch (err) {
     console.error(err);
 
