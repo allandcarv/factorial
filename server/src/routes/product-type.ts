@@ -6,13 +6,13 @@ import {
   addProductTypeController,
   updateProductTypeController,
   getProductsByTypeController,
+  deleteProductTypeController,
 } from '../controllers/product-type';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import {
   validateNewProductType,
   validateUpdateProductType,
 } from '../validators/product-type';
-import { deleteProductTypeController } from '../controllers/product-type/delete-product-type';
 
 const productTypesRouter = Router();
 
