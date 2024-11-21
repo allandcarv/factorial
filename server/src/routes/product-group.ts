@@ -2,8 +2,10 @@ import { Router } from 'express';
 
 import {
   addProductGroupController,
+  deleteProductGroupController,
   getProductGroupController,
   getProductGroupsController,
+  getProductsByGroupController,
   getProductTypesByGroupController,
   updateProductGroupController,
 } from '../controllers/product-group';
@@ -12,8 +14,6 @@ import {
   validateUpdateProductGroup,
 } from '../validators/product-group';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
-import { deleteProductGroupController } from '../controllers/product-group/delete-product-group';
-import { getProductsByGroupController } from '../controllers/product-group/get-products-by-group';
 
 const productGroupsRouter = Router();
 
