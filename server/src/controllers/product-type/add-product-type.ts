@@ -1,11 +1,15 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { getProductGroup } from '../../models/product-group';
-import { badRequest } from '../../utils/bad-request';
-import type { NewProductType, ProductType } from '../../types/product-type';
+import type { NewProductType } from '../../types/product-type';
 import { addProductType } from '../../models/product-type';
 import { created } from '../../utils/created';
 import { internalError } from '../../utils/internal-error';
+import {
+  productTypeAdapter,
+  productTypeDTOAdapter,
+} from '../../adapters/product-type';
+import { badRequest } from '../../utils/bad-request';
 
 export const addProductTypeController = async (req: Request, res: Response) => {
   try {
@@ -13,6 +17,7 @@ export const addProductTypeController = async (req: Request, res: Response) => {
 
     if (!productGroup) {
       badRequest(res, 'Product Group Not Found');
+
       return;
     }
 
@@ -22,17 +27,11 @@ export const addProductTypeController = async (req: Request, res: Response) => {
       title: req.body.title,
     };
 
-    const result = await addProductType(newProductType);
+    const productTypeDTO = productTypeDTOAdapter(newProductType);
 
-    const productType: ProductType = {
-      id: result.id,
-      title: result.title,
-      productGroup: {
-        id: productGroup.id,
-        title: productGroup.title,
-      },
-      description: result.description,
-    };
+    const result = await addProductType(productTypeDTO);
+
+    const productType = productTypeAdapter(result, productGroup);
 
     created(res, productType);
   } catch (err) {

@@ -13,6 +13,10 @@ import {
   validateNewProductType,
   validateUpdateProductType,
 } from '../validators/product-type';
+import {
+  productTypeIdValidator,
+  updateParamsValidator,
+} from '../middlewares/product-type';
 
 const productTypesRouter = Router();
 
@@ -34,9 +38,15 @@ productTypesRouter.patch(
   '/product-types/:id',
   validateUpdateProductType,
   fieldsErrorValidation,
+  productTypeIdValidator,
+  updateParamsValidator,
   updateProductTypeController
 );
 
-productTypesRouter.delete('/product-types/:id', deleteProductTypeController);
+productTypesRouter.delete(
+  '/product-types/:id',
+  productTypeIdValidator,
+  deleteProductTypeController
+);
 
 export { productTypesRouter };
