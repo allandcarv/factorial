@@ -17,7 +17,7 @@ export interface Product {
 }
 
 export interface NewProduct
-  extends Pick<Product, 'description' | 'stock' | 'title'> {
+  extends Pick<ProductDTO, 'description' | 'stock' | 'title'> {
   productType: string;
 }
 

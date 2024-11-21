@@ -19,6 +19,6 @@ export interface NewProductType
   productGroup: string;
 }
 
-export interface UpdateProductType extends Partial<NewProductType> {
+export interface UpdateProductType extends Partial<Omit<ProductTypeDTO, 'id'>> {
   id: string;
 }

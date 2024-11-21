@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
-import { validateNewProductRestriction } from '../validators/product-restriction';
+import {
+  validateNewProductRestriction,
+  validateUpdateProductRestriction,
+} from '../validators/product-restriction';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
 import {
   addProductRestrictionController,
@@ -12,6 +15,11 @@ import {
   getProductRestrictionsBySourceProductController,
   getProductRestrictionsController,
 } from '../controllers/product-restrictions';
+import {
+  addParamsValidator,
+  updateParamsValidator,
+} from '../middlewares/product-restriction';
+import { updateProductRestrictionController } from '../controllers/product-restrictions/update-product-restriction';
 
 const productRestrictionsRouter = Router();
 
@@ -44,7 +52,16 @@ productRestrictionsRouter.post(
   '/product-restrictions',
   validateNewProductRestriction,
   fieldsErrorValidation,
+  addParamsValidator,
   addProductRestrictionController
+);
+
+productRestrictionsRouter.patch(
+  '/product-restrictions/:id',
+  validateUpdateProductRestriction,
+  fieldsErrorValidation,
+  updateParamsValidator,
+  updateProductRestrictionController
 );
 
 productRestrictionsRouter.delete(

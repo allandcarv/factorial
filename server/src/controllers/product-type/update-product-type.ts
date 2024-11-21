@@ -36,7 +36,7 @@ export const updateProductTypeController = async (
     const newProductType: UpdateProductType = {
       id: req.params.id,
       title: req.body.title,
-      productGroup: req.body.productGroup,
+      product_group: req.body.productGroup,
       description: req.body.description,
     };
 

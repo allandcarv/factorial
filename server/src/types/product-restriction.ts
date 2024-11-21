@@ -15,3 +15,8 @@ export interface ProductRestriction {
 }
 
 export type NewProductRestriction = Omit<ProductRestriction, 'id'>;
+
+export interface UpdateProductRestriction
+  extends Partial<Omit<ProductRestrictionDTO, 'id'>> {
+  id: string;
+}

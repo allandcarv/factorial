@@ -6,6 +6,7 @@ export interface ProductGroupDTO {
 
 export type NewProductGroup = Omit<ProductGroupDTO, 'id'>;
 
-export interface UpdateProductGroup extends Partial<NewProductGroup> {
+export interface UpdateProductGroup
+  extends Partial<Omit<ProductGroupDTO, 'id'>> {
   id: string;
 }

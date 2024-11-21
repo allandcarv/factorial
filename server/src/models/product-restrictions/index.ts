@@ -6,3 +6,4 @@ export { getProductRestrictionsByGroup } from './get-product-restrictions-by-gro
 export { getProductRestrictionsByRestrictedProduct } from './get-product-restrictions-by-restricted-product';
 export { getProductRestrictionsByRestrictedType } from './get-product-restrictions-by-restricted-type';
 export { getProductRestrictionsBySourceProduct } from './get-product-restrictions-by-source-product';
+export { updateProductRestriction } from './update-product-restriction';

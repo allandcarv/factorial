@@ -29,7 +29,7 @@ export const updateProductType = async (
     productTypeToUpdate.description =
       updatedProductType.description ?? productTypeToUpdate.description;
     productTypeToUpdate.product_group =
-      updatedProductType.productGroup ?? productTypeToUpdate.product_group;
+      updatedProductType.product_group ?? productTypeToUpdate.product_group;
     productTypeToUpdate.title =
       updatedProductType.title ?? productTypeToUpdate.title;
 
