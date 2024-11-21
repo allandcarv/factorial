@@ -1,14 +1,14 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
+
 import { internalError } from '../../utils/internal-error';
 import {
-  getProductGroup,
   getProductsByGroup,
   getTypesByGroup,
 } from '../../models/product-group';
-import { notFound } from '../../utils/not-found';
 import type { ProductTypeDTO } from '../../types/product-type';
 import type { Product } from '../../types/product';
 import { success } from '../../utils/success';
+import { productAdapter } from '../../adapters/product';
 
 export const getProductsByGroupController = async (
   req: Request,
@@ -16,14 +16,6 @@ export const getProductsByGroupController = async (
 ) => {
   try {
     const productGroupId = req.params.id;
-
-    const productGroup = await getProductGroup(productGroupId);
-
-    if (!productGroup) {
-      notFound(res, 'Product Group Not Found');
-
-      return;
-    }
 
     const productTypes = await getTypesByGroup(productGroupId);
     const mappedProductTypes = new Map<string, ProductTypeDTO>();
@@ -36,16 +28,11 @@ export const getProductsByGroupController = async (
     const parsedProducts: Product[] = products.map((product) => {
       const productType = mappedProductTypes.get(product.product_type);
 
-      return {
-        id: product.id,
-        title: product.title,
-        productType: {
-          id: productType?.id,
-          title: productType?.title,
-        },
-        description: product.description,
-        stock: product.stock,
-      };
+      if (!productType) {
+        throw new Error('Product Type Not Found');
+      }
+
+      return productAdapter(product, productType);
     });
 
     success(res, parsedProducts);

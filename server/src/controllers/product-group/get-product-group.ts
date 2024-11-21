@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { getProductGroup } from '../../models/product-group';
 import { success } from '../../utils/success';

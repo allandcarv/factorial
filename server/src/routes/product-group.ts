@@ -14,11 +14,13 @@ import {
   validateUpdateProductGroup,
 } from '../validators/product-group';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
+import { productGroupIdValidator } from '../middlewares/product-group';
 
 const productGroupsRouter = Router();
 
 productGroupsRouter.get(
   '/product-groups/:id/products',
+  productGroupIdValidator,
   getProductsByGroupController
 );
 productGroupsRouter.get(
@@ -39,9 +41,14 @@ productGroupsRouter.patch(
   '/product-groups/:id',
   validateUpdateProductGroup,
   fieldsErrorValidation,
+  productGroupIdValidator,
   updateProductGroupController
 );
 
-productGroupsRouter.delete('/product-groups/:id', deleteProductGroupController);
+productGroupsRouter.delete(
+  '/product-groups/:id',
+  productGroupIdValidator,
+  deleteProductGroupController
+);
 
 export { productGroupsRouter };

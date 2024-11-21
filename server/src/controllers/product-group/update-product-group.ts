@@ -1,10 +1,6 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
-import {
-  getProductGroup,
-  updateProductGroup,
-} from '../../models/product-group';
-import { notFound } from '../../utils/not-found';
+import { updateProductGroup } from '../../models/product-group';
 import type { UpdateProductGroup } from '../../types/product-group';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
@@ -14,13 +10,6 @@ export const updateProductGroupController = async (
   res: Response
 ) => {
   try {
-    const productGroup = await getProductGroup(req.params.id);
-
-    if (!productGroup) {
-      notFound(res, 'Product Group Not Found');
-      return;
-    }
-
     const updatedProductGroup: UpdateProductGroup = {
       id: req.params.id,
       title: req.body.title,

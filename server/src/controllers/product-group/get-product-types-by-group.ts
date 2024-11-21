@@ -1,9 +1,11 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
+
 import { getProductGroup, getTypesByGroup } from '../../models/product-group';
 import { notFound } from '../../utils/not-found';
 import type { ProductType } from '../../types/product-type';
 import { success } from '../../utils/success';
 import { internalError } from '../../utils/internal-error';
+import { productTypeAdapter } from '../../adapters/product-type';
 
 export const getProductTypesByGroupController = async (
   req: Request,
@@ -22,15 +24,7 @@ export const getProductTypesByGroupController = async (
     const productTypesByGroup = await getTypesByGroup(productGroupId);
 
     const parsedProductTypesByGroup: ProductType[] = productTypesByGroup.map(
-      (productType) => ({
-        id: productType.id,
-        title: productType.title,
-        productGroup: {
-          id: productGroup.id,
-          title: productGroup.title,
-        },
-        description: productType.description,
-      })
+      (productType) => productTypeAdapter(productType, productGroup)
     );
 
     success(res, parsedProductTypesByGroup);

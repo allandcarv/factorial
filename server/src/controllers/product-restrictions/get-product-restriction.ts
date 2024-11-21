@@ -4,7 +4,7 @@ import { internalError } from '../../utils/internal-error';
 import { getProductRestriction } from '../../models/product-restrictions';
 import { success } from '../../utils/success';
 import { notFound } from '../../utils/not-found';
-import { productRestrictionAdapter } from '../../adapters/product-restrictions';
+import { productRestrictionAdapter } from '../../adapters/product-restriction';
 
 export const getProductRestrictionController = async (
   req: Request,

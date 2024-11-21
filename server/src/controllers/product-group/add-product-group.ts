@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import type { NewProductGroup } from '../../types/product-group';
 import { addProductGroup } from '../../models/product-group';

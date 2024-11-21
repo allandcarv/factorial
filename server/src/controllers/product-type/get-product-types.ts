@@ -24,12 +24,16 @@ export const getProductTypesController = async (
     const result: ProductType[] = productTypes.map((productType) => {
       const productGroup = mappedProductGroups.get(productType.product_group);
 
+      if (!productGroup) {
+        throw new Error('Product Group Not Found');
+      }
+
       return {
         id: productType.id,
         description: productType.description,
         productGroup: {
-          id: productGroup?.id,
-          title: productGroup?.title,
+          id: productGroup.id,
+          title: productGroup.title,
         },
         title: productType.title,
       };

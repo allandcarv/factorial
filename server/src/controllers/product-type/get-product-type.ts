@@ -21,12 +21,16 @@ export const getProductTypeController = async (req: Request, res: Response) => {
 
     const productGroup = await getProductGroup(productType.product_group);
 
+    if (!productGroup) {
+      throw new Error('Product Group Not Found');
+    }
+
     const result: ProductType = {
       description: productType.description,
       id: productType.id,
       productGroup: {
-        id: productGroup?.id,
-        title: productGroup?.title,
+        id: productGroup.id,
+        title: productGroup.title,
       },
       title: productType.title,
     };

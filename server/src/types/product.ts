@@ -11,7 +11,7 @@ export interface ProductDTO {
 export interface Product {
   id: string;
   title: string;
-  productType: Partial<Pick<ProductTypeDTO, 'id' | 'title'>>;
+  productType: Pick<ProductTypeDTO, 'id' | 'title'>;
   description: string;
   stock: boolean;
 }

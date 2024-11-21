@@ -6,7 +6,7 @@ import type {
 } from '../../types/product-restriction';
 import { PRODUCT_RESTRICTIONS_FILE } from '../../shared/constants';
 import { getProductRestrictions } from './get-product-restrictions';
-import { productRestrictionDTOAdapter } from '../../adapters/product-restrictions';
+import { productRestrictionDTOAdapter } from '../../adapters/product-restriction';
 
 export const addProductRestriction = async (
   newProductRestriction: NewProductRestriction

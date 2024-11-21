@@ -43,12 +43,16 @@ export const updateProductController = async (req: Request, res: Response) => {
 
     productType = await getProductType(updatedProduct.product_type);
 
+    if (!productType) {
+      throw new Error('Product Type Not Found');
+    }
+
     const result: Product = {
       id: updatedProduct.id,
       title: updatedProduct.title,
       productType: {
-        id: productType?.id,
-        title: productType?.title,
+        id: productType.id,
+        title: productType.title,
       },
       description: updatedProduct.description,
       stock: updatedProduct.stock,

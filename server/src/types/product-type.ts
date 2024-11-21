@@ -10,7 +10,7 @@ export interface ProductTypeDTO {
 export interface ProductType {
   id: string;
   title: string;
-  productGroup: Partial<Omit<ProductGroupDTO, 'description'>>;
+  productGroup: Omit<ProductGroupDTO, 'description'>;
   description: string;
 }
 

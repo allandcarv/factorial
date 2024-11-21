@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { internalError } from '../../utils/internal-error';
 import { updateProductRestriction } from '../../models/product-restrictions';
 import type { UpdateProductRestriction } from '../../types/product-restriction';
-import { productRestrictionAdapter } from '../../adapters/product-restrictions';
+import { productRestrictionAdapter } from '../../adapters/product-restriction';
 import { success } from '../../utils/success';
 
 export const updateProductRestrictionController = async (

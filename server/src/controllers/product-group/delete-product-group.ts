@@ -1,10 +1,6 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
-import {
-  deleteProductGroup,
-  getProductGroup,
-} from '../../models/product-group';
-import { notFound } from '../../utils/not-found';
+import { deleteProductGroup } from '../../models/product-group';
 import { internalError } from '../../utils/internal-error';
 import { noContent } from '../../utils/no-content';
 
@@ -14,13 +10,6 @@ export const deleteProductGroupController = async (
 ) => {
   try {
     const productGroupId = req.params.id;
-
-    const productGroup = await getProductGroup(productGroupId);
-
-    if (!productGroup) {
-      notFound(res, 'Product Group Not Found');
-      return;
-    }
 
     await deleteProductGroup(productGroupId);
 

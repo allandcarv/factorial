@@ -21,12 +21,16 @@ export const getProductsController = async (_req: Request, res: Response) => {
     const result: Product[] = products.map((product) => {
       const productType = mappedProductTypes.get(product.product_type);
 
+      if (!productType) {
+        throw new Error('Product Type Not Found');
+      }
+
       return {
         description: product.description,
         id: product.id,
         productType: {
-          id: productType?.id,
-          title: productType?.title,
+          id: productType.id,
+          title: productType.title,
         },
         stock: product.stock,
         title: product.title,
