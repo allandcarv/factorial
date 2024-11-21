@@ -7,11 +7,11 @@ import {
 } from '../validators/product';
 import {
   addProductController,
+  deleteProductController,
   getProductController,
   getProductsController,
   updateProductController,
 } from '../controllers/product';
-import { deleteProductController } from '../controllers/product/delete-product';
 
 const productsRouter = Router();
 
