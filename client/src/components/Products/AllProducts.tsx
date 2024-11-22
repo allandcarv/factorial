@@ -1,10 +1,11 @@
 import type { FC } from 'react';
 
-import { useProducts } from '../../hooks';
+import { useOnClickItemAllProducts, useProducts } from '../../hooks';
+import { ProductsList } from './ProductsList/ProductsList';
 
 export const AllProducts: FC = () => {
   const { products } = useProducts();
-  console.log('🚀 ~ AllProducts ~ products:', products);
+  const { onClickItemHandler } = useOnClickItemAllProducts();
 
-  return null;
+  return <ProductsList products={products} onClickItem={onClickItemHandler} />;
 };

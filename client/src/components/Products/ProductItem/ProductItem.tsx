@@ -6,11 +6,12 @@ import styles from './ProductItem.module.css';
 
 interface ProductItemProps {
   product: Product;
+  onClickItem: () => void;
 }
 
-export const ProductItem: FC<ProductItemProps> = ({ product }) => {
+export const ProductItem: FC<ProductItemProps> = ({ product, onClickItem }) => {
   return (
-    <li className={styles['product-item']}>
+    <li className={styles['product-item']} onClick={onClickItem}>
       <section className={styles['product-section']}>
         <img
           src={product.imageUrl}
