@@ -10,6 +10,7 @@ export const validateNewProduct = [
   body('stock')
     .notEmpty()
     .custom((stock) => typeof stock === 'boolean'),
+  body('imageUrl').notEmpty().isString().trim(),
 ];
 
 export const validateUpdateProduct = [
@@ -22,4 +23,5 @@ export const validateUpdateProduct = [
   body('stock')
     .optional()
     .custom((stock) => typeof stock === 'boolean'),
+  body('imageUrl').optional().isString().trim(),
 ];

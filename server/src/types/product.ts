@@ -7,6 +7,7 @@ export interface ProductDTO {
   description: string;
   stock: boolean;
   price: number;
+  image_url: string;
 }
 
 export interface Product {
@@ -16,9 +17,12 @@ export interface Product {
   description: string;
   stock: boolean;
   price: number;
+  imageUrl: string;
 }
 
-export interface NewProduct extends Omit<ProductDTO, 'id' | 'product_type'> {
+export interface NewProduct
+  extends Omit<ProductDTO, 'id' | 'product_type' | 'image_url'> {
+  imageUrl: string;
   productType: string;
 }
 

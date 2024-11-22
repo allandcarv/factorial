@@ -23,6 +23,7 @@ export const addProductController = async (req: Request, res: Response) => {
       productType: req.body.productType,
       stock: req.body.stock,
       title: req.body.title,
+      imageUrl: req.body.imageUrl,
     });
 
     const result = await addProduct(newProduct);

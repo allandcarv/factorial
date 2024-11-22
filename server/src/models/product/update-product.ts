@@ -30,6 +30,8 @@ export const updateProduct = async (
       updatedProduct.description ?? productToUpdate.description;
     productToUpdate.stock = updatedProduct.stock ?? productToUpdate.stock;
     productToUpdate.price = updatedProduct.price ?? productToUpdate.price;
+    productToUpdate.image_url =
+      updatedProduct.imageUrl ?? productToUpdate.image_url;
 
     await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products));
 
