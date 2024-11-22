@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../../shared/constants';
-import type { ProductGroups } from '../../types';
+import type { ProductGroup } from '../../types';
 
-export const getGroups = async (): Promise<ProductGroups[]> => {
+export const fetchGroups = async (): Promise<ProductGroup[]> => {
   try {
     const response = await fetch(`${API_BASE_URL}/product-groups`);
 
@@ -9,7 +9,7 @@ export const getGroups = async (): Promise<ProductGroups[]> => {
       throw new Error(response.statusText);
     }
 
-    const productGroups: ProductGroups[] = await response.json();
+    const productGroups: ProductGroup[] = await response.json();
 
     return productGroups;
   } catch (err) {

@@ -10,13 +10,20 @@ body,
 #root {
   width: 100%;
   height: 100%;
+  background-color: var(--white);
 }
 
 #root {
-  padding: 0 2rem 2rem 2rem;
   position: relative;
 }
 
 button {
   cursor: pointer;
+}
+
+:root {
+  --default-padding: 0 2rem;
+
+  --black: #000;
+  --white: #fff;
 }

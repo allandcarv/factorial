@@ -1,0 +1,7 @@
+.main {
+  height: 100%;
+  width: 100%;
+  position: 'relative';
+  padding: var(--default-padding);
+  padding-top: 1rem;
+}

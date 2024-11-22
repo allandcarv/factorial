@@ -1,16 +1,14 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { getGroups } from '../services/api';
+import { fetchGroups } from '../services/api';
 
 export const useGroups = () => {
-  const { data, isLoading, isError } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['groups'],
-    queryFn: getGroups,
+    queryFn: fetchGroups,
   });
 
   return {
-    data,
-    isError,
-    isLoading,
+    groups: data,
   };
 };
