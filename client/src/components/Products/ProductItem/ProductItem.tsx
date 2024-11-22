@@ -1,17 +1,34 @@
 import type { FC } from 'react';
 
-import type { Product } from '../../../types';
+import type { Product } from '../../../shared/types';
+import { useSelectedProducts } from '../../../shared/store/hooks/use-selected-products';
 
 import styles from './ProductItem.module.css';
+import { useOnClickProduct } from '../../../shared/hooks';
 
 interface ProductItemProps {
   product: Product;
-  onClickItem: () => void;
 }
 
-export const ProductItem: FC<ProductItemProps> = ({ product, onClickItem }) => {
+export const ProductItem: FC<ProductItemProps> = ({ product }) => {
+  const selectedProducts = useSelectedProducts(
+    (state) => state.selectedProducts
+  );
+  const { onClickItemHandler } = useOnClickProduct();
+
+  const isProductBlocked = selectedProducts.some(
+    (selectedProduct) =>
+      selectedProduct.id !== product.id &&
+      selectedProduct.productType.id === product.productType.id
+  );
+
   return (
-    <li className={styles['product-item']} onClick={onClickItem}>
+    <li
+      className={`${styles['product-item']} ${
+        isProductBlocked ? styles['product-item-blocked'] : ''
+      }`}
+      onClick={() => !isProductBlocked && onClickItemHandler(product)}
+    >
       <section className={styles['product-section']}>
         <img
           src={product.imageUrl}

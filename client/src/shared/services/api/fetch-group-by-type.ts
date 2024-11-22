@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../../shared/constants';
+import { API_BASE_URL } from '../../constants';
 import type { ProductGroup, ProductType } from '../../types';
 
 export const fetchGroupByType = async (

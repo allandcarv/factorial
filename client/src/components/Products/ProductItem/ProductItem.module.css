@@ -6,6 +6,11 @@
   cursor: pointer;
 }
 
+.product-item-blocked {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
 .product-section {
   flex: 1 1 auto;
 }

@@ -1,13 +1,18 @@
 import type { FC } from 'react';
 import { Link, NavLink } from 'react-router';
 
-import { useGroups } from '../../hooks';
 import { QUERY_PARAMS } from '../../shared/constants';
+
+import { useSelectedProducts } from '../../shared/store/hooks/use-selected-products';
+import { useGroups } from '../../shared/hooks';
 
 import styles from './Header.module.css';
 
 export const Header: FC = () => {
   const { groups } = useGroups();
+  const selectedProducts = useSelectedProducts(
+    (state) => state.selectedProducts
+  );
 
   return (
     <header className={styles.header}>
@@ -30,7 +35,11 @@ export const Header: FC = () => {
           ))}
           <li style={{ position: 'relative' }}>
             <span className="material-symbols-outlined">shopping_cart</span>
-            <span className={styles['products-count']}>1</span>
+            {!!selectedProducts.length && (
+              <span className={styles['products-count']}>
+                {selectedProducts.length}
+              </span>
+            )}
           </li>
         </ul>
       </nav>

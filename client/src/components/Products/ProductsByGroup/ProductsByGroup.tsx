@@ -1,9 +1,12 @@
 import type { FC } from 'react';
 
-import { useProductsByGroup, useSplitProductsByType } from '../../../hooks';
 import { ProductsList } from '../ProductsList/ProductsList';
 
 import styles from './ProductsByGroup.module.css';
+import {
+  useProductsByGroup,
+  useSplitProductsByType,
+} from '../../../shared/hooks';
 
 interface ProductsByGroupProps {
   groupId: string;

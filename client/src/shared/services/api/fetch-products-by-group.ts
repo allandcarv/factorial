@@ -1,9 +1,13 @@
-import { API_BASE_URL } from '../../shared/constants';
+import { API_BASE_URL } from '../../constants';
 import type { Product } from '../../types';
 
-export const fetchProducts = async (): Promise<Product[]> => {
+export const fetchProductsByGroup = async (
+  groupId: string
+): Promise<Product[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/products`);
+    const response = await fetch(
+      `${API_BASE_URL}/product-groups/${groupId}/products`
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);

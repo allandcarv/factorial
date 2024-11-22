@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../../shared/constants';
+import { API_BASE_URL } from '../../constants';
 import type { ProductGroup } from '../../types';
 
 export const fetchGroups = async (): Promise<ProductGroup[]> => {
