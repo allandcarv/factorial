@@ -6,7 +6,7 @@ import { App } from './App';
 const rootEl = document.getElementById('root');
 const root = createRoot(rootEl!);
 
-import './globals.css';
+import './styles/globals.css';
 
 root.render(
   <React.StrictMode>
