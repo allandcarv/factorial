@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router';
 import { Main } from '../components';
 import { Home } from '../pages';
 
-const Products = lazy(() => import('../pages/Products'));
+const Products = lazy(() => import('../pages/Products/Products'));
 
 export const AppRoutes: FC = () => {
   return (

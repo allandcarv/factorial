@@ -1,8 +1,10 @@
 import { Suspense, type FC } from 'react';
 import { useSearchParams } from 'react-router';
 
-import { QUERY_PARAMS } from '../shared/constants';
-import { AllProducts, Loading, ProductsByGroup } from '../components';
+import { QUERY_PARAMS } from '../../shared/constants';
+import { AllProducts, Loading, ProductsByGroup } from '../../components';
+
+import styles from './Products.module.css';
 
 const Products: FC = () => {
   const [searchParams] = useSearchParams();
@@ -10,7 +12,7 @@ const Products: FC = () => {
 
   return (
     <>
-      <h2>Products Page</h2>
+      <h1 className={styles['products-title']}>Products Page</h1>
       <Suspense fallback={<Loading />}>
         {groupId ? <ProductsByGroup groupId={groupId} /> : <AllProducts />}
       </Suspense>

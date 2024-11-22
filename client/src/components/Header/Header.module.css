@@ -8,6 +8,7 @@
   padding: var(--default-padding);
   background-color: var(--white);
   border-bottom: 2px solid #000;
+  z-index: 1;
 
   & a {
     text-decoration: none;
