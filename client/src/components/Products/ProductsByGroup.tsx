@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 
 import { useProductsByGroup } from '../../hooks';
+import { ProductsList } from './ProductsList/ProductsList';
 
 interface ProductsByGroupProps {
   groupId: string;
@@ -8,7 +9,6 @@ interface ProductsByGroupProps {
 
 export const ProductsByGroup: FC<ProductsByGroupProps> = ({ groupId }) => {
   const { productsByGroup } = useProductsByGroup(groupId);
-  console.log('🚀 ~ productsByGroup:', productsByGroup);
 
-  return null;
+  return <ProductsList products={productsByGroup} />;
 };

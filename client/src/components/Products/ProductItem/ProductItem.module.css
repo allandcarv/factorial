@@ -1,0 +1,23 @@
+.product-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-section {
+  flex: 1 1 auto;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

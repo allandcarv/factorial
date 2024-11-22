@@ -11,8 +11,6 @@ export const fetchProducts = async (): Promise<Product[]> => {
 
     const products: Product[] = await response.json();
 
-    await new Promise((r) => setTimeout(r, 5000));
-
     return products;
   } catch (err) {
     throw new Error(`Error on Fetching Products: ${err}`);

@@ -1,0 +1,10 @@
+.products-list {
+  list-style: none;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  border: 1px solid var(--black);
+  border-radius: var(--default-border-radius);
+  padding: 1rem;
+}
