@@ -3,16 +3,14 @@ import { Link, NavLink } from 'react-router';
 
 import { QUERY_PARAMS } from '../../shared/constants';
 
-import { useSelectedProducts } from '../../shared/store/hooks/use-selected-products';
 import { useGroups } from '../../shared/hooks';
+import { useAppStore } from '../../shared/store/hooks';
 
 import styles from './Header.module.css';
 
 export const Header: FC = () => {
   const { groups } = useGroups();
-  const selectedProducts = useSelectedProducts(
-    (state) => state.selectedProducts
-  );
+  const selectedProducts = useAppStore((state) => state.selectedProducts);
 
   return (
     <header className={styles.header}>

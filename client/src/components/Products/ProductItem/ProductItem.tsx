@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
 import type { Product } from '../../../shared/types';
-import { useSelectedProducts } from '../../../shared/store/hooks/use-selected-products';
 
 import styles from './ProductItem.module.css';
+import { useAppStore } from '../../../shared/store/hooks';
 import { useOnClickProduct } from '../../../shared/hooks';
 
 interface ProductItemProps {
@@ -11,23 +11,33 @@ interface ProductItemProps {
 }
 
 export const ProductItem: FC<ProductItemProps> = ({ product }) => {
-  const selectedProducts = useSelectedProducts(
-    (state) => state.selectedProducts
-  );
   const { onClickItemHandler } = useOnClickProduct();
+  const restrictedProducts = useAppStore((state) => state.restrictedProducts);
+  const selectedProducts = useAppStore((state) => state.selectedProducts);
 
-  const isProductBlocked = selectedProducts.some(
-    (selectedProduct) =>
-      selectedProduct.id !== product.id &&
-      selectedProduct.productType.id === product.productType.id
-  );
+  const isProductBlocked = selectedProducts.some((selectedProduct) => {
+    const isSameProduct = selectedProduct.id === product.id;
+
+    if (isSameProduct) {
+      return false;
+    }
+
+    const isSameProductType =
+      selectedProduct.productType.id === product.productType.id;
+
+    return isSameProductType;
+  });
+
+  const isProductRestricted = restrictedProducts.has(product.id);
+
+  const isProductDisabled = isProductBlocked || isProductRestricted;
 
   return (
     <li
       className={`${styles['product-item']} ${
-        isProductBlocked ? styles['product-item-blocked'] : ''
+        isProductDisabled ? styles['product-item-disabled'] : ''
       }`}
-      onClick={() => !isProductBlocked && onClickItemHandler(product)}
+      onClick={() => !isProductDisabled && onClickItemHandler(product)}
     >
       <section className={styles['product-section']}>
         <img
