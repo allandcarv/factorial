@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-import type { UpdateUser, UserDTO } from '../../types/users';
+import type { UpdateUser, UserDTO } from '../../types/user';
 import { getUsers } from './get-users';
 import { USERS_FILE } from '../../shared/constants';
 

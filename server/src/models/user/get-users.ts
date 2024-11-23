@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-import type { UserDTO } from '../../types/users';
+import type { UserDTO } from '../../types/user';
 import { USERS_FILE } from '../../shared/constants';
 
 export const getUsers = async (): Promise<UserDTO[]> => {

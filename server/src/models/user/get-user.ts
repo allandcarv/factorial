@@ -1,4 +1,4 @@
-import type { UserDTO } from '../../types/users';
+import type { UserDTO } from '../../types/user';
 import { getUsers } from './get-users';
 
 export const getUser = async (id: string): Promise<UserDTO | undefined> => {
