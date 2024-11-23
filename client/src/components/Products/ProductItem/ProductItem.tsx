@@ -2,9 +2,11 @@ import type { FC } from 'react';
 
 import type { Product } from '../../../shared/types';
 
-import styles from './ProductItem.module.css';
 import { useAppStore } from '../../../shared/store/hooks';
 import { useOnClickProduct } from '../../../shared/hooks';
+import { formatCurrency } from '../../../shared/utils';
+
+import styles from './ProductItem.module.css';
 
 interface ProductItemProps {
   product: Product;
@@ -49,12 +51,7 @@ export const ProductItem: FC<ProductItemProps> = ({ product }) => {
       </section>
       <section className={styles['product-section']}>
         <p className={styles['product-title']}>{product.title}</p>
-        <strong>
-          {Intl.NumberFormat('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-          }).format(product.price)}
-        </strong>
+        <strong>{formatCurrency(product.price)}</strong>
       </section>
     </li>
   );
