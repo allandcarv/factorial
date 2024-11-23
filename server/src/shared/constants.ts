@@ -31,3 +31,13 @@ export const PRODUCT_RESTRICTIONS_FILE = path.join(
   'db',
   'product-restrictions.json'
 );
+
+export const USERS_FILE = path.join(__dirname, '..', '..', 'db', 'users.json');
+
+export const ORDERS_FILE = path.join(
+  __dirname,
+  '..',
+  '..',
+  'db',
+  'orders.json'
+);

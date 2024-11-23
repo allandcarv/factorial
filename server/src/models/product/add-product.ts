@@ -16,6 +16,6 @@ export const addProduct = async (product: ProductDTO): Promise<ProductDTO> => {
   } catch (err) {
     console.error(err);
 
-    throw new Error(`Error on getting product group: ${err}`);
+    throw new Error(`Error on adding product: ${err}`);
   }
 };

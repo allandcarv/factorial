@@ -9,6 +9,8 @@ const resetData = async () => {
     __dirname,
     'product-restrictions.json'
   );
+  const ordersFile = path.join(__dirname, 'orders.json');
+  const usersFile = path.join(__dirname, 'users.json');
 
   const productGroupsBKPFile = path.join(
     __dirname,
@@ -30,6 +32,8 @@ const resetData = async () => {
     'original-files',
     'product-restrictions.json'
   );
+  const ordersBKPFile = path.join(__dirname, 'original-files', 'orders.json');
+  const usersBKPFile = path.join(__dirname, 'original-files', 'users.json');
 
   const productGroupsContent = await fs.readFile(productGroupsBKPFile);
   const productTypesContent = await fs.readFile(productTypesBKPFile);
@@ -37,12 +41,16 @@ const resetData = async () => {
   const productRestrictionsContent = await fs.readFile(
     productRestrictionsBKPFile
   );
+  const ordersContent = await fs.readFile(ordersBKPFile);
+  const usersContent = await fs.readFile(usersBKPFile);
 
   await Promise.all([
     fs.writeFile(productGroupsFile, productGroupsContent),
     fs.writeFile(productTypesFile, productTypesContent),
     fs.writeFile(productsFile, productsContent),
     fs.writeFile(productRestrictionsFile, productRestrictionsContent),
+    fs.writeFile(ordersFile, ordersContent),
+    fs.writeFile(usersFile, usersContent),
   ]);
 };
 
