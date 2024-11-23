@@ -1,0 +1,3 @@
+.table-cell {
+  padding: var(--default-table-cell-padding);
+}

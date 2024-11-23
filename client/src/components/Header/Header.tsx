@@ -32,12 +32,24 @@ export const Header: FC = () => {
             </li>
           ))}
           <li style={{ position: 'relative' }}>
-            <span className="material-symbols-outlined">shopping_cart</span>
-            {!!selectedProducts.length && (
-              <span className={styles['products-count']}>
-                {selectedProducts.length}
+            <NavLink
+              to="checkout"
+              title="Go to My Checkout"
+              className={({ isActive }) =>
+                isActive ? styles['active-link'] : ''
+              }
+            >
+              <span
+                className={`material-symbols-outlined ${styles['icon-link']}`}
+              >
+                shopping_cart
               </span>
-            )}
+              {!!selectedProducts.length && (
+                <span className={styles['products-count']}>
+                  {selectedProducts.length}
+                </span>
+              )}
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -34,6 +34,11 @@
   font-weight: bold;
 }
 
+.icon-link {
+  font-weight: inherit;
+  user-select: none;
+}
+
 .products-count {
   position: absolute;
   width: 1.2rem;
