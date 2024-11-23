@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-import type { ProductGroupDTO } from '../../types/product-group';
+import type { ProductGroupDTO } from '../../shared/types/product-group';
 import { getProductGroups } from './get-product-groups';
 import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
 

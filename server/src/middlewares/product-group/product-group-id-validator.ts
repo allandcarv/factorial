@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express';
 
-import { internalError } from '../../utils/internal-error';
+import { internalError } from '../../shared/utils/internal-error';
 import { getProductGroup } from '../../models/product-group';
-import { notFound } from '../../utils/not-found';
+import { notFound } from '../../shared/utils/not-found';
 
 export const productGroupIdValidator = async (
   req: Request,

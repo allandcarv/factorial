@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import type {
   NewProductRestriction,
   ProductRestrictionDTO,
-} from '../../types/product-restriction';
+} from '../../shared/types/product-restriction';
 import { PRODUCT_RESTRICTIONS_FILE } from '../../shared/constants';
 import { getProductRestrictions } from './get-product-restrictions';
 import { productRestrictionDTOAdapter } from '../../adapters/product-restriction';

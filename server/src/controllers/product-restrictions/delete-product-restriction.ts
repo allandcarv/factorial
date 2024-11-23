@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
 
-import { internalError } from '../../utils/internal-error';
+import { internalError } from '../../shared/utils/internal-error';
 import { deleteProductRestriction } from '../../models/product-restrictions';
-import { noContent } from '../../utils/no-content';
+import { noContent } from '../../shared/utils/no-content';
 
 export const deleteProductRestrictionController = async (
   req: Request,

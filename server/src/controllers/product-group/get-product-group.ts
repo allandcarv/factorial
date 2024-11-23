@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
 
 import { getProductGroup } from '../../models/product-group';
-import { success } from '../../utils/success';
-import { internalError } from '../../utils/internal-error';
-import { notFound } from '../../utils/not-found';
+import { success } from '../../shared/utils/success';
+import { internalError } from '../../shared/utils/internal-error';
+import { notFound } from '../../shared/utils/not-found';
 
 export const getProductGroupController = async (
   req: Request,

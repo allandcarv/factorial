@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import type {
   UpdateProductGroup,
   ProductGroupDTO,
-} from '../../types/product-group';
+} from '../../shared/types/product-group';
 import { getProductGroups } from './get-product-groups';
 import { PRODUCT_GROUPS_FILE } from '../../shared/constants';
 

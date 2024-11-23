@@ -1,4 +1,4 @@
-import type { ProductRestrictionDTO } from '../../types/product-restriction';
+import type { ProductRestrictionDTO } from '../../shared/types/product-restriction';
 import { getProductRestrictions } from './get-product-restrictions';
 
 export const getProductRestriction = async (

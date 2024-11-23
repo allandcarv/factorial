@@ -1,4 +1,4 @@
-import type { OrderDTO } from '../../types/order';
+import type { OrderDTO } from '../../shared/types/order';
 import { getOrders } from './get-orders';
 
 export const getOrder = async (id: string): Promise<OrderDTO | undefined> => {

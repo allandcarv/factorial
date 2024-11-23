@@ -1,9 +1,9 @@
 import type {
   NewProductGroup,
   ProductGroupDTO,
-} from '../../types/product-group';
+} from '../../shared/types/product-group';
 
-import { uuid } from '../../utils/uuid';
+import { uuid } from '../../shared/utils/uuid';
 
 export const productGroupDTOAdapter = (
   productGroup: NewProductGroup

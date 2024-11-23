@@ -2,9 +2,9 @@ import type { Request, Response } from 'express';
 
 import { updateProductType } from '../../models/product-type';
 import { getProductGroup } from '../../models/product-group';
-import type { UpdateProductType } from '../../types/product-type';
-import { success } from '../../utils/success';
-import { internalError } from '../../utils/internal-error';
+import type { UpdateProductType } from '../../shared/types/product-type';
+import { success } from '../../shared/utils/success';
+import { internalError } from '../../shared/utils/internal-error';
 import { productTypeAdapter } from '../../adapters/product-type';
 
 export const updateProductTypeController = async (

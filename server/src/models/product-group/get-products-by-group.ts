@@ -1,4 +1,4 @@
-import type { ProductDTO } from '../../types/product';
+import type { ProductDTO } from '../../shared/types/product';
 import { getProductsByType } from '../product-type';
 import { getTypesByGroup } from './get-types-by-group';
 

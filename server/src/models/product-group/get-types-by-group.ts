@@ -1,4 +1,4 @@
-import type { ProductTypeDTO } from '../../types/product-type';
+import type { ProductTypeDTO } from '../../shared/types/product-type';
 import { getProductTypes } from '../product-type';
 
 export const getTypesByGroup = async (

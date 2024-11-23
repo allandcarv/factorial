@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
 
-import type { NewProductGroup } from '../../types/product-group';
+import type { NewProductGroup } from '../../shared/types/product-group';
 import { addProductGroup } from '../../models/product-group';
-import { created } from '../../utils/created';
-import { internalError } from '../../utils/internal-error';
+import { created } from '../../shared/utils/created';
+import { internalError } from '../../shared/utils/internal-error';
 import { productGroupDTOAdapter } from '../../adapters/product-group';
 
 export const addProductGroupController = async (

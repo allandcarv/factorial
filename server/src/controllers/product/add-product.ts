@@ -1,10 +1,10 @@
 import type { Request, Response } from 'express';
 
 import { getProductType } from '../../models/product-type';
-import { badRequest } from '../../utils/bad-request';
+import { badRequest } from '../../shared/utils/bad-request';
 import { addProduct } from '../../models/product';
-import { created } from '../../utils/created';
-import { internalError } from '../../utils/internal-error';
+import { created } from '../../shared/utils/created';
+import { internalError } from '../../shared/utils/internal-error';
 import { productDTOAdapter } from '../../adapters/product/product-dto';
 import { productAdapter } from '../../adapters/product';
 

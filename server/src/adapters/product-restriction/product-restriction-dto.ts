@@ -1,8 +1,8 @@
 import type {
   NewProductRestriction,
   ProductRestrictionDTO,
-} from '../../types/product-restriction';
-import { uuid } from '../../utils/uuid';
+} from '../../shared/types/product-restriction';
+import { uuid } from '../../shared/utils/uuid';
 
 /**
  * This adapter is responsible for parsing the product restriction

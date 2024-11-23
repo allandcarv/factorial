@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
 
 import { deleteProductType } from '../../models/product-type';
-import { noContent } from '../../utils/no-content';
-import { internalError } from '../../utils/internal-error';
+import { noContent } from '../../shared/utils/no-content';
+import { internalError } from '../../shared/utils/internal-error';
 
 export const deleteProductTypeController = async (
   req: Request,

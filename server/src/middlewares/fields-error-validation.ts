@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { badRequest } from '../utils/bad-request';
+import { badRequest } from '../shared/utils/bad-request';
 
 export const fieldsErrorValidation = (
   req: Request,

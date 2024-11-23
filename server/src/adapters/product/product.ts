@@ -1,5 +1,5 @@
-import type { Product, ProductDTO } from '../../types/product';
-import type { ProductTypeDTO } from '../../types/product-type';
+import type { Product, ProductDTO } from '../../shared/types/product';
+import type { ProductTypeDTO } from '../../shared/types/product-type';
 
 export const productAdapter = (
   product: ProductDTO,

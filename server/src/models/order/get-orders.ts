@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-import type { OrderDTO } from '../../types/order';
+import type { OrderDTO } from '../../shared/types/order';
 import { ORDERS_FILE } from '../../shared/constants';
 
 export const getOrders = async (): Promise<OrderDTO[]> => {

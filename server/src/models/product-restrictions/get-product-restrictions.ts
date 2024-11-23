@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-import type { ProductRestrictionDTO } from '../../types/product-restriction';
+import type { ProductRestrictionDTO } from '../../shared/types/product-restriction';
 import { PRODUCT_RESTRICTIONS_FILE } from '../../shared/constants';
 
 export const getProductRestrictions = async (): Promise<

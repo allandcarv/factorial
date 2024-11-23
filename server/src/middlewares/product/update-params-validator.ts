@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
 
 import { getProductGroup } from '../../models/product-group';
-import { badRequest } from '../../utils/bad-request';
-import { internalError } from '../../utils/internal-error';
+import { badRequest } from '../../shared/utils/bad-request';
+import { internalError } from '../../shared/utils/internal-error';
 
 export const updateParamsValidator = async (
   req: Request,

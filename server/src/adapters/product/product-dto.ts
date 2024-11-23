@@ -1,5 +1,5 @@
-import type { NewProduct, ProductDTO } from '../../types/product';
-import { uuid } from '../../utils/uuid';
+import type { NewProduct, ProductDTO } from '../../shared/types/product';
+import { uuid } from '../../shared/utils/uuid';
 
 export const productDTOAdapter = (newProduct: NewProduct): ProductDTO => ({
   id: uuid(),

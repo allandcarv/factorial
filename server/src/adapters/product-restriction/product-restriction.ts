@@ -1,7 +1,7 @@
 import type {
   ProductRestriction,
   ProductRestrictionDTO,
-} from '../../types/product-restriction';
+} from '../../shared/types/product-restriction';
 
 /**
  * This adapter is responsible for parsing the product restriction
