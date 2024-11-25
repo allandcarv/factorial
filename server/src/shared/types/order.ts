@@ -1,4 +1,4 @@
-export interface OrderProductDTO {
+export interface OrderProduct {
   id: string;
   title: string;
   price: number;
@@ -11,17 +11,16 @@ export interface OrderUser {
 
 export interface OrderDTO {
   id: string;
-  user: string;
-  products: OrderProductDTO[];
+  user: OrderUser;
+  products: OrderProduct[];
   created: number;
 }
 
-export interface Order extends Omit<OrderDTO, 'user'> {
-  user: OrderUser;
+export interface NewOrder {
+  user: string;
+  products: string[];
 }
 
-export type NewOrder = Omit<OrderDTO, 'id' | 'created'>;
-
-export interface UpdateOrder extends Partial<Omit<NewOrder, 'created'>> {
+export interface UpdateOrder extends Partial<NewOrder> {
   id: string;
 }

@@ -4,8 +4,10 @@ import { badRequest } from '../../shared/utils/bad-request';
 import { created } from '../../shared/utils/created';
 import { internalError } from '../../shared/utils/internal-error';
 import { getUser } from '../../models/user';
-import { orderAdapter, orderDTOAdapter } from '../../adapters/order';
+import { orderDTOAdapter } from '../../adapters/order';
 import { addOrder } from '../../models/order';
+import type { ProductDTO } from '../../shared/types/product';
+import { getProduct } from '../../models/product';
 
 export const addOrderController = async (req: Request, res: Response) => {
   try {
@@ -16,16 +18,25 @@ export const addOrderController = async (req: Request, res: Response) => {
       return;
     }
 
-    const newOrder = orderDTOAdapter({
-      products: req.body.products,
-      user: req.body.user,
-    });
+    const orderProducts: ProductDTO[] = [];
+
+    for (const orderProductId of req.body.products) {
+      const product = await getProduct(orderProductId);
+
+      if (!product) {
+        badRequest(res, 'Product Not Found');
+
+        return;
+      }
+
+      orderProducts.push(product);
+    }
+
+    const newOrder = orderDTOAdapter(orderUser, orderProducts);
 
     const result = await addOrder(newOrder);
 
-    const order = orderAdapter(result, orderUser);
-
-    created(res, order);
+    created(res, result);
   } catch (err) {
     internalError(res);
   }

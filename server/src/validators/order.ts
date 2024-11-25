@@ -11,12 +11,6 @@ export const validateNewOrder = [
       return false;
     }
 
-    return products.every((product) => {
-      const hasValidId = product.id && typeof product.id === 'string';
-      const hasValidTitle = product.title && typeof product.title === 'string';
-      const hasValidPrice = product.price && typeof product.price === 'number';
-
-      return hasValidId && hasValidPrice && hasValidTitle;
-    });
+    return products.every((productId) => typeof productId === 'string');
   }),
 ];

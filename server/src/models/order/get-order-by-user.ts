@@ -7,7 +7,7 @@ export const getOrderByUser = async (
   try {
     const orders: OrderDTO[] = await getOrders();
 
-    const order = orders.find((order) => order.user === userId);
+    const order = orders.find((order) => order.user.id === userId);
 
     return order;
   } catch (err) {
