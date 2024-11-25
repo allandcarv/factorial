@@ -1,11 +1,12 @@
 import type { Request, Response } from 'express';
 
 import { getProductTypes } from '../../models/product-type';
-import { getProductGroups } from '../../models/product-group';
+import { getProductGroup, getProductGroups } from '../../models/product-group';
 import type { ProductGroupDTO } from '../../shared/types/product-group';
 import { success } from '../../shared/utils/success';
 import { internalError } from '../../shared/utils/internal-error';
 import { productTypeAdapter } from '../../adapters/product-type';
+import type { ProductType } from '../../shared/types/product-type';
 
 export const getProductTypesController = async (
   _req: Request,
@@ -13,23 +14,17 @@ export const getProductTypesController = async (
 ) => {
   try {
     const productTypes = await getProductTypes();
-    const productGroups = await getProductGroups();
+    const result: ProductType[] = [];
 
-    const mappedProductGroups = new Map<string, ProductGroupDTO>();
-
-    productGroups.forEach((productGroup) =>
-      mappedProductGroups.set(productGroup.id, productGroup)
-    );
-
-    const result = productTypes.map((productType) => {
-      const productGroup = mappedProductGroups.get(productType.product_group);
+    for (const productType of productTypes) {
+      const productGroup = await getProductGroup(productType.product_group);
 
       if (!productGroup) {
         throw new Error('Product Group Not Found');
       }
 
-      return productTypeAdapter(productType, productGroup);
-    });
+      result.push(productTypeAdapter(productType, productGroup));
+    }
 
     success(res, result);
   } catch (err) {
