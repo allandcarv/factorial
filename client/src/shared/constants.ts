@@ -6,7 +6,7 @@ export const QUERY_PARAMS = {
   Group: 'group',
 };
 
-export const INITIAL_ORDER_STATE: ProcessedOrder = {
+export const INITIAL_ORDER_STATE: Readonly<ProcessedOrder> = {
   products: [],
   total: 0,
 };

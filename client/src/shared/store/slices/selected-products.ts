@@ -14,12 +14,18 @@ export const createSelectedProductsSlice: StateCreator<
   addSelectedProduct: (productId) =>
     set((state) => {
       state.selectedProducts.add(productId);
-      return { ...state };
+      return {
+        ...state,
+        selectedProducts: new Set([...state.selectedProducts]),
+      };
     }),
   removeSelectedProduct: (productId) =>
     set((state) => {
       state.selectedProducts.delete(productId);
-      return { ...state };
+      return {
+        ...state,
+        selectedProducts: new Set([...state.selectedProducts]),
+      };
     }),
   resetSelectedProducts: () =>
     set((state) => ({ ...state, selectedProducts: new Set<string>() })),

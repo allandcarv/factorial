@@ -12,15 +12,17 @@ export interface OrderState {
 }
 
 export const createOrdersSlice: StateCreator<OrderState> = (set) => ({
-  order: INITIAL_ORDER_STATE,
+  order: { ...INITIAL_ORDER_STATE },
   addProduct: (product) =>
     set((state) => {
-      state.order.products.push(product);
       const total = state.order.total + product.price;
 
       return {
         ...state,
-        total,
+        order: {
+          products: [...state.order.products, product],
+          total,
+        },
       };
     }),
 
@@ -39,5 +41,6 @@ export const createOrdersSlice: StateCreator<OrderState> = (set) => ({
         },
       };
     }),
-  resetOrder: () => set((state) => ({ ...state, order: INITIAL_ORDER_STATE })),
+  resetOrder: () =>
+    set((state) => ({ ...state, order: { ...INITIAL_ORDER_STATE } })),
 });

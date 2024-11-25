@@ -23,11 +23,12 @@ export const createProductsSlice: StateCreator<
       state.selectedProducts.add(product.id);
       state.selectedTypes.add(product.productType.id);
 
-      state.order.products.push(product);
       return {
         ...state,
+        selectedProducts: new Set([...state.selectedProducts]),
+        selectedTypes: new Set([...state.selectedTypes]),
         order: {
-          ...state.order,
+          products: [...state.order.products, product],
           total: state.order.total + product.price,
         },
       };
@@ -42,6 +43,8 @@ export const createProductsSlice: StateCreator<
       );
       return {
         ...state,
+        selectedProducts: new Set([...state.selectedProducts]),
+        selectedTypes: new Set([...state.selectedTypes]),
         order: {
           products: filteredProducts,
           total: state.order.total - product.price,
@@ -53,6 +56,6 @@ export const createProductsSlice: StateCreator<
       ...state,
       selectedTypes: new Set<string>(),
       selectedProducts: new Set<string>(),
-      order: INITIAL_ORDER_STATE,
+      order: { ...INITIAL_ORDER_STATE },
     })),
 });
