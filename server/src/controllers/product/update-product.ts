@@ -3,9 +3,8 @@ import { Request, Response } from 'express';
 import { updateProduct } from '../../models/product';
 import { getProductType } from '../../models/product-type';
 import type { UpdateProduct, Product } from '../../shared/types/product';
-import { internalError } from '../../shared/utils/internal-error';
-import { success } from '../../shared/utils/success';
 import { productAdapter } from '../../adapters/product';
+import { success, internalError } from '../../shared/utils';
 
 export const updateProductController = async (req: Request, res: Response) => {
   try {

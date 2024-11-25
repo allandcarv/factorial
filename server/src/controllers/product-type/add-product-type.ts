@@ -3,13 +3,11 @@ import type { Request, Response } from 'express';
 import { getProductGroup } from '../../models/product-group';
 import type { NewProductType } from '../../shared/types/product-type';
 import { addProductType } from '../../models/product-type';
-import { created } from '../../shared/utils/created';
-import { internalError } from '../../shared/utils/internal-error';
 import {
   productTypeAdapter,
   productTypeDTOAdapter,
 } from '../../adapters/product-type';
-import { badRequest } from '../../shared/utils/bad-request';
+import { badRequest, created, internalError } from '../../shared/utils';
 
 export const addProductTypeController = async (req: Request, res: Response) => {
   try {

@@ -1,7 +1,7 @@
-import type { NewOrder, OrderDTO } from '../../shared/types/order';
+import type { OrderDTO } from '../../shared/types/order';
 import type { ProductDTO } from '../../shared/types/product';
 import type { UserDTO } from '../../shared/types/user';
-import { uuid } from '../../shared/utils/uuid';
+import { uuid } from '../../shared/utils';
 
 export const orderDTOAdapter = (
   user: UserDTO,

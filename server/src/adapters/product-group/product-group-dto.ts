@@ -3,7 +3,7 @@ import type {
   ProductGroupDTO,
 } from '../../shared/types/product-group';
 
-import { uuid } from '../../shared/utils/uuid';
+import { uuid } from '../../shared/utils';
 
 export const productGroupDTOAdapter = (
   productGroup: NewProductGroup

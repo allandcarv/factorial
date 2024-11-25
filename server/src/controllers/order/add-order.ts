@@ -1,13 +1,11 @@
 import type { Request, Response } from 'express';
 
-import { badRequest } from '../../shared/utils/bad-request';
-import { created } from '../../shared/utils/created';
-import { internalError } from '../../shared/utils/internal-error';
 import { getUser } from '../../models/user';
 import { orderDTOAdapter } from '../../adapters/order';
 import { addOrder } from '../../models/order';
 import type { ProductDTO } from '../../shared/types/product';
 import { getProduct } from '../../models/product';
+import { badRequest, created, internalError } from '../../shared/utils';
 
 export const addOrderController = async (req: Request, res: Response) => {
   try {

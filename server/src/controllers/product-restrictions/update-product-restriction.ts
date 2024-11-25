@@ -1,10 +1,9 @@
 import type { Request, Response } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
 import { updateProductRestriction } from '../../models/product-restrictions';
 import type { UpdateProductRestriction } from '../../shared/types/product-restriction';
 import { productRestrictionAdapter } from '../../adapters/product-restriction';
-import { success } from '../../shared/utils/success';
+import { internalError, success } from '../../shared/utils';
 
 export const updateProductRestrictionController = async (
   req: Request,

@@ -1,10 +1,8 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
 import { getProductsByType, getProductType } from '../../models/product-type';
-import { notFound } from '../../shared/utils/not-found';
-import { success } from '../../shared/utils/success';
 import { productAdapter } from '../../adapters/product';
+import { notFound, success, internalError } from '../../shared/utils';
 
 export const getProductsByTypeController = async (
   req: Request,

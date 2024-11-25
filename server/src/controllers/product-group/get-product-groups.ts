@@ -1,8 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { getProductGroups } from '../../models/product-group';
-import { internalError } from '../../shared/utils/internal-error';
-import { success } from '../../shared/utils/success';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductGroupsController = async (
   _req: Request,

@@ -1,10 +1,14 @@
 import { Router } from 'express';
 
-import { getOrdersController } from '../controllers/order/get-orders';
-import { getOrderController } from '../controllers/order/get-order';
 import { validateNewOrder } from '../validators';
 import { fieldsErrorValidation } from '../middlewares/fields-error-validation';
-import { addOrderController } from '../controllers/order/add-order';
+import { orderIdValidator } from '../middlewares/order';
+import {
+  getOrderController,
+  getOrdersController,
+  addOrderController,
+  deleteOrderController,
+} from '../controllers/order';
 
 const ordersRouter = Router();
 
@@ -17,5 +21,7 @@ ordersRouter.post(
   fieldsErrorValidation,
   addOrderController
 );
+
+ordersRouter.delete('/orders/:id', orderIdValidator, deleteOrderController);
 
 export { ordersRouter };

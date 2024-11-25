@@ -1,10 +1,8 @@
 import { Request, Response } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
 import { getProductRestriction } from '../../models/product-restrictions';
-import { success } from '../../shared/utils/success';
-import { notFound } from '../../shared/utils/not-found';
 import { productRestrictionAdapter } from '../../adapters/product-restriction';
+import { notFound, success, internalError } from '../../shared/utils';
 
 export const getProductRestrictionController = async (
   req: Request,

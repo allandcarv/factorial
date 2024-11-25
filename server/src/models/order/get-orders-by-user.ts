@@ -1,13 +1,13 @@
 import type { OrderDTO } from '../../shared/types/order';
 import { getOrders } from './get-orders';
 
-export const getOrderByUser = async (
+export const getOrdersByUser = async (
   userId: string
-): Promise<OrderDTO | undefined> => {
+): Promise<OrderDTO[] | undefined> => {
   try {
     const orders: OrderDTO[] = await getOrders();
 
-    const order = orders.find((order) => order.user.id === userId);
+    const order = orders.filter((order) => order.user.id === userId);
 
     return order;
   } catch (err) {

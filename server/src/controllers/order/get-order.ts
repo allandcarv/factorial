@@ -1,9 +1,7 @@
 import type { Request, Response } from 'express';
 
-import { success } from '../../shared/utils/success';
-import { internalError } from '../../shared/utils/internal-error';
-import { notFound } from '../../shared/utils/not-found';
 import { getOrder } from '../../models/order';
+import { notFound, success, internalError } from '../../shared/utils';
 
 export const getOrderController = async (req: Request, res: Response) => {
   try {

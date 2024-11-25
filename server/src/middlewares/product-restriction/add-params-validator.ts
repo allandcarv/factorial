@@ -1,12 +1,9 @@
-import { Request, Response, type NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
-import { getProductRestriction } from '../../models/product-restrictions';
-import { notFound } from '../../shared/utils/not-found';
 import { getProductGroup } from '../../models/product-group';
-import { badRequest } from '../../shared/utils/bad-request';
 import { getProduct } from '../../models/product';
 import { getProductType } from '../../models/product-type';
+import { badRequest, internalError } from '../../shared/utils';
 
 export const addParamsValidator = async (
   req: Request,

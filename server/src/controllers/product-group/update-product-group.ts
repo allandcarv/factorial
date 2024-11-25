@@ -2,8 +2,7 @@ import type { Request, Response } from 'express';
 
 import { updateProductGroup } from '../../models/product-group';
 import type { UpdateProductGroup } from '../../shared/types/product-group';
-import { success } from '../../shared/utils/success';
-import { internalError } from '../../shared/utils/internal-error';
+import { success, internalError } from '../../shared/utils';
 
 export const updateProductGroupController = async (
   req: Request,

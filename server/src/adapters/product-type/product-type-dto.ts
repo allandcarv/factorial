@@ -2,7 +2,7 @@ import type {
   NewProductType,
   ProductTypeDTO,
 } from '../../shared/types/product-type';
-import { uuid } from '../../shared/utils/uuid';
+import { uuid } from '../../shared/utils';
 
 export const productTypeDTOAdapter = (
   productType: NewProductType

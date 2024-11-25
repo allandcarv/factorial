@@ -1,14 +1,13 @@
 import type { Request, Response } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
 import {
   getProductsByGroup,
   getTypesByGroup,
 } from '../../models/product-group';
 import type { ProductTypeDTO } from '../../shared/types/product-type';
 import type { Product } from '../../shared/types/product';
-import { success } from '../../shared/utils/success';
 import { productAdapter } from '../../adapters/product';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductsByGroupController = async (
   req: Request,

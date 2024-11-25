@@ -1,8 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 
-import { internalError } from '../../shared/utils/internal-error';
 import { getProductType } from '../../models/product-type';
-import { notFound } from '../../shared/utils/not-found';
+import { notFound, internalError } from '../../shared/utils';
 
 export const productTypeIdValidator = async (
   req: Request,

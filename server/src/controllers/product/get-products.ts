@@ -2,10 +2,9 @@ import type { Request, Response } from 'express';
 
 import { getProducts } from '../../models/product';
 import { getProductType } from '../../models/product-type';
-import { success } from '../../shared/utils/success';
-import { internalError } from '../../shared/utils/internal-error';
 import { productAdapter } from '../../adapters/product';
 import type { Product } from '../../shared/types/product';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductsController = async (_req: Request, res: Response) => {
   try {
