@@ -20,7 +20,7 @@ export interface Order extends Omit<OrderDTO, 'user'> {
   user: OrderUser;
 }
 
-export type NewOrder = Omit<OrderDTO, 'id'>;
+export type NewOrder = Omit<OrderDTO, 'id' | 'created'>;
 
 export interface UpdateOrder extends Partial<Omit<NewOrder, 'created'>> {
   id: string;
