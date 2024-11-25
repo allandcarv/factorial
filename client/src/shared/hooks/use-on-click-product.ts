@@ -10,10 +10,8 @@ export const useOnClickProduct = () => {
 
   const { navigateToProductsPage } = useProductNavigate();
   const selectedProducts = useAppStore((state) => state.selectedProducts);
-  const addSelectedProduct = useAppStore((state) => state.addSelectedProduct);
-  const removeSelectedProduct = useAppStore(
-    (state) => state.removeSelectedProduct
-  );
+  const addProduct = useAppStore((store) => store.addProduct);
+  const removeProduct = useAppStore((store) => store.removeProduct);
 
   const { getProductRestrictions, removeProductRestrictions } =
     useProductRestrictions();
@@ -23,15 +21,13 @@ export const useOnClickProduct = () => {
       navigateToProductsPage(product);
     }
 
-    const isProductSelected = selectedProducts.some(
-      (selectedProduct) => selectedProduct.id === product.id
-    );
+    const isProductSelected = selectedProducts.has(product.id);
 
     if (isProductSelected) {
-      removeSelectedProduct(product.id);
+      removeProduct(product);
       removeProductRestrictions(product.id);
     } else {
-      addSelectedProduct(product);
+      addProduct(product);
       getProductRestrictions(product.id);
     }
   };

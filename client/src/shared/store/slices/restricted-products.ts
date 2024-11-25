@@ -6,6 +6,7 @@ export interface RestrictedProductsState {
   addRestrictedProduct: (restrictedProductId: string) => void;
   removeRestrictedProduct: (restrictedProductId: string) => void;
   setIsLoading: (isLoading: boolean) => void;
+  resetRestrictedProducts: () => void;
 }
 
 export const createRestrictedProductsSlice: StateCreator<
@@ -36,4 +37,6 @@ export const createRestrictedProductsSlice: StateCreator<
       };
     }),
   setIsLoading: (isLoading) => set((state) => ({ ...state, isLoading })),
+  resetRestrictedProducts: () =>
+    set((state) => ({ ...state, restrictedProducts: new Set<string>() })),
 });

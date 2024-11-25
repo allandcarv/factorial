@@ -8,26 +8,21 @@ import styles from './CheckoutTable.module.css';
 
 interface CheckoutTableProps {
   products: Product[];
+  total: number;
 }
 
-export const CheckoutTable: FC<CheckoutTableProps> = ({ products }) => {
-  let total = 0;
-
+export const CheckoutTable: FC<CheckoutTableProps> = ({ products, total }) => {
   return (
     <Table>
       <Table.Body>
-        {products.map((product) => {
-          total += product.price;
-
-          return (
-            <Table.Row key={product.id}>
-              <Table.Cell>{product.title}</Table.Cell>
-              <Table.Cell className={styles['table-value-cell']}>
-                {formatCurrency(product.price)}
-              </Table.Cell>
-            </Table.Row>
-          );
-        })}
+        {products.map((product) => (
+          <Table.Row key={product.id}>
+            <Table.Cell>{product.title}</Table.Cell>
+            <Table.Cell className={styles['table-value-cell']}>
+              {formatCurrency(product.price)}
+            </Table.Cell>
+          </Table.Row>
+        ))}
       </Table.Body>
       <Table.Footer>
         <Table.Row className={styles['table-footer-row']}>

@@ -1,24 +1,26 @@
 import type { StateCreator } from 'zustand';
-import type { Product } from '../../types';
 
 export interface SelectedProductsState {
-  selectedProducts: Product[];
-  addSelectedProduct: (product: Product) => void;
+  selectedProducts: Set<string>;
+  addSelectedProduct: (productId: string) => void;
   removeSelectedProduct: (productId: string) => void;
+  resetSelectedProducts: () => void;
 }
 
 export const createSelectedProductsSlice: StateCreator<
   SelectedProductsState
 > = (set) => ({
-  selectedProducts: [],
-  addSelectedProduct: (product) =>
-    set((state) => ({
-      selectedProducts: [...state.selectedProducts, product],
-    })),
+  selectedProducts: new Set<string>(),
+  addSelectedProduct: (productId) =>
+    set((state) => {
+      state.selectedProducts.add(productId);
+      return { ...state };
+    }),
   removeSelectedProduct: (productId) =>
-    set((state) => ({
-      selectedProducts: state.selectedProducts.filter(
-        (product) => product.id !== productId
-      ),
-    })),
+    set((state) => {
+      state.selectedProducts.delete(productId);
+      return { ...state };
+    }),
+  resetSelectedProducts: () =>
+    set((state) => ({ ...state, selectedProducts: new Set<string>() })),
 });

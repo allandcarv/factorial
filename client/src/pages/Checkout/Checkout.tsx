@@ -4,18 +4,22 @@ import { useAppStore } from '../../shared/store/hooks';
 import { CheckoutTable } from '../../components/CheckoutTable/CheckoutTable';
 
 import styles from './Checkout.module.css';
+import { useAddNewOrder } from '../../shared/hooks/use-add-new-order';
 
 const Checkout: FC = () => {
-  const selectedProducts = useAppStore((store) => store.selectedProducts);
+  const order = useAppStore((store) => store.order);
+  const { onAddOrder } = useAddNewOrder();
 
   return (
     <>
       <h1 className={styles['checkout-title']}>My Checkout</h1>
       <section>
-        {selectedProducts.length ? (
+        {order.products.length ? (
           <>
-            <CheckoutTable products={selectedProducts} />
-            <button className={styles['submit-button']}>Place Order</button>
+            <CheckoutTable products={order.products} total={order.total} />
+            <button className={styles['submit-button']} onClick={onAddOrder}>
+              Place Order
+            </button>
           </>
         ) : (
           <p>

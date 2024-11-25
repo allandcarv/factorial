@@ -1,3 +1,4 @@
+export {} from './use-add-new-order';
 export { useGroups } from './use-groups';
 export { useOnClickProduct } from './use-on-click-product';
 export { useProducts } from './use-products';

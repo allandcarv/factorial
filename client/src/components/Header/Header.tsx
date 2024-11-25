@@ -44,9 +44,9 @@ export const Header: FC = () => {
               >
                 shopping_cart
               </span>
-              {!!selectedProducts.length && (
+              {!!selectedProducts.size && (
                 <span className={styles['products-count']}>
-                  {selectedProducts.length}
+                  {selectedProducts.size}
                 </span>
               )}
             </NavLink>
