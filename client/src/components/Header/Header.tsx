@@ -14,7 +14,7 @@ export const Header: FC = () => {
 
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.link} title="Home of My Store">
+      <Link to="/" title="Home of My Store">
         <span className={styles.logo}>My Store</span>
       </Link>
       <nav>
