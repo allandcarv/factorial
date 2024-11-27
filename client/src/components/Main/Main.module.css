@@ -1,5 +1,6 @@
 .main {
   width: 100%;
+  height: calc(100% - var(--default-header-height));
   position: relative;
   padding: var(--default-padding);
   padding-top: 1rem;

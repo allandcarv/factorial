@@ -9,13 +9,12 @@ import {
 export const useProductRestrictions = () => {
   const queryClient = useQueryClient();
 
-  const addRestrictedProduct = useAppStore(
-    (state) => state.addRestrictedProduct
-  );
-  const removeRestrictedProduct = useAppStore(
-    (state) => state.removeRestrictedProduct
-  );
-  const setIsLoading = useAppStore((state) => state.setIsLoading);
+  const {
+    setIsLoading,
+    setIsError,
+    addRestrictedProduct,
+    removeRestrictedProduct,
+  } = useAppStore();
 
   const getRestrictionsBySourceProduct = (sourceProductId: string) =>
     queryClient.fetchQuery({
@@ -31,39 +30,49 @@ export const useProductRestrictions = () => {
     });
 
   const getProductRestrictions = async (productId: string) => {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
+      setIsError(false);
 
-    const productRestrictionsBySourceProduct =
-      await getRestrictionsBySourceProduct(productId);
-    const productRestrictionsByRestrictedProduct =
-      await getRestrictionsByRestrictedProduct(productId);
+      const productRestrictionsBySourceProduct =
+        await getRestrictionsBySourceProduct(productId);
+      const productRestrictionsByRestrictedProduct =
+        await getRestrictionsByRestrictedProduct(productId);
 
-    productRestrictionsBySourceProduct.forEach((productRestriction) =>
-      addRestrictedProduct(productRestriction.restrictedProduct)
-    );
-    productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
-      addRestrictedProduct(productRestriction.sourceProduct)
-    );
-
-    setIsLoading(false);
+      productRestrictionsBySourceProduct.forEach((productRestriction) =>
+        addRestrictedProduct(productRestriction.restrictedProduct)
+      );
+      productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
+        addRestrictedProduct(productRestriction.sourceProduct)
+      );
+    } catch {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const removeProductRestrictions = async (productId: string) => {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
+      setIsError(false);
 
-    const productRestrictionsBySourceProduct =
-      await getRestrictionsBySourceProduct(productId);
-    const productRestrictionsByRestrictedProduct =
-      await getRestrictionsByRestrictedProduct(productId);
+      const productRestrictionsBySourceProduct =
+        await getRestrictionsBySourceProduct(productId);
+      const productRestrictionsByRestrictedProduct =
+        await getRestrictionsByRestrictedProduct(productId);
 
-    productRestrictionsBySourceProduct.forEach((productRestriction) =>
-      removeRestrictedProduct(productRestriction.restrictedProduct)
-    );
-    productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
-      removeRestrictedProduct(productRestriction.sourceProduct)
-    );
-
-    setIsLoading(false);
+      productRestrictionsBySourceProduct.forEach((productRestriction) =>
+        removeRestrictedProduct(productRestriction.restrictedProduct)
+      );
+      productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
+        removeRestrictedProduct(productRestriction.sourceProduct)
+      );
+    } catch {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return {

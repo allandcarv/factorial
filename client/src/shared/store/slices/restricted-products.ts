@@ -1,11 +1,9 @@
 import type { StateCreator } from 'zustand';
 
 export interface RestrictedProductsState {
-  isLoading: boolean;
   restrictedProducts: Set<string>;
   addRestrictedProduct: (restrictedProductId: string) => void;
   removeRestrictedProduct: (restrictedProductId: string) => void;
-  setIsLoading: (isLoading: boolean) => void;
   resetRestrictedProducts: () => void;
 }
 
@@ -36,7 +34,6 @@ export const createRestrictedProductsSlice: StateCreator<
         restrictedProducts: newState,
       };
     }),
-  setIsLoading: (isLoading) => set((state) => ({ ...state, isLoading })),
   resetRestrictedProducts: () =>
     set((state) => ({ ...state, restrictedProducts: new Set<string>() })),
 });

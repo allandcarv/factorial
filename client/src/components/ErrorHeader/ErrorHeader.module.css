@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  height: 4rem;
+  height: var(--default-header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,18 +20,4 @@
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
-}
-
-.main {
-  width: 100%;
-  height: calc(100% - 4rem);
-  position: relative;
-}
-
-.message {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
 }

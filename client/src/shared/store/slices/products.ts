@@ -7,6 +7,10 @@ import type { Product } from '../../types';
 import { INITIAL_ORDER_STATE } from '../../constants';
 
 export interface ProductsState {
+  isLoading: boolean;
+  isError: boolean;
+  setIsLoading: (isLoading: boolean) => void;
+  setIsError: (isError: boolean) => void;
   addProduct: (product: Product) => void;
   removeProduct: (product: Product) => void;
   resetProductsState: () => void;
@@ -18,6 +22,10 @@ export const createProductsSlice: StateCreator<
   [],
   ProductsState
 > = (set) => ({
+  isLoading: false,
+  isError: false,
+  setIsLoading: (isLoading) => set((state) => ({ ...state, isLoading })),
+  setIsError: (isError) => set((state) => ({ ...state, isError })),
   addProduct: (product) =>
     set((state) => {
       state.selectedProducts.add(product.id);

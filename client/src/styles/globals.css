@@ -25,6 +25,8 @@ button {
   --default-padding: 0 2rem;
   --default-border-radius: 0.5rem;
 
+  --default-header-height: 4rem;
+
   --title-margin-bottom: 1rem;
 
   --default-table-cell-padding: 0.5rem 0;

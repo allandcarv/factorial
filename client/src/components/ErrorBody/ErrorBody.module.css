@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  height: calc(100% - var(--default-header-height));
+  position: relative;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}

@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const ErrorPage = lazy(() => import('./pages/ErrorPage/ErrorPage'));
+const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
 export const App: FC = () => {
   return (
