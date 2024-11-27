@@ -4,14 +4,14 @@ import { Table } from '../../shared/ui';
 import type { Product } from '../../shared/types';
 import { formatCurrency } from '../../shared/utils';
 
-import styles from './CheckoutTable.module.css';
+import styles from './OrderTable.module.css';
 
-interface CheckoutTableProps {
+interface OrderTableProps {
   products: Product[];
   total: number;
 }
 
-export const CheckoutTable: FC<CheckoutTableProps> = ({ products, total }) => {
+export const OrderTable: FC<OrderTableProps> = ({ products, total }) => {
   return (
     <Table>
       <Table.Body>

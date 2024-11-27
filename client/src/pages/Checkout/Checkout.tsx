@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
 import { useAppStore } from '../../shared/store/hooks';
-import { CheckoutTable } from '../../components/CheckoutTable/CheckoutTable';
+import { OrderTable } from '../../components/OrderTable/OrderTable';
 import { useAddNewOrder } from '../../shared/hooks/use-add-new-order';
 import { Loading } from '../../components';
 
@@ -18,7 +18,7 @@ const Checkout: FC = () => {
         {isLoading && <Loading />}
         {order.products.length ? (
           <>
-            <CheckoutTable products={order.products} total={order.total} />
+            <OrderTable products={order.products} total={order.total} />
             <button className={styles['submit-button']} onClick={addOrder}>
               Place Order
             </button>

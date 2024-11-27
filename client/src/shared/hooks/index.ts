@@ -1,4 +1,5 @@
-export {} from './use-add-new-order';
+export { useAddNewOrder } from './use-add-new-order';
+export { useGetOrder } from './use-get-order';
 export { useGroups } from './use-groups';
 export { useOnClickProduct } from './use-on-click-product';
 export { useProducts } from './use-products';

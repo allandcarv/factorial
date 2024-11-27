@@ -13,10 +13,10 @@ export const useAddNewOrder = () => {
 
   const mutation = useMutation({
     mutationFn: (newOrder: NewOrder) => addOrderService(newOrder),
-    onSuccess: () => {
+    onSuccess: (data) => {
       resetProductsState();
       resetRestrictedProducts();
-      navigate('/order-success');
+      navigate(`/order?id=${data.id}`);
     },
   });
 

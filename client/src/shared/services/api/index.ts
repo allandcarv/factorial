@@ -1,7 +1,9 @@
 export { addOrder } from './add-order';
 export { fetchGroups } from './fetch-groups';
+export { fetchOrder } from './fetch-order';
 export { fetchGroupByType } from './fetch-group-by-type';
 export { fetchProducts } from './fetch-products';
+export { fetchProduct } from './fetch-product';
 export { fetchProductsByGroup } from './fetch-products-by-group';
 export { fetchProductRestrictionsByRestrictedProduct } from './fetch-product-restrictions-by-restricted-product';
 export { fetchProductRestrictionsBySourceProduct } from './fetch-product-restrictions-by-source-product';

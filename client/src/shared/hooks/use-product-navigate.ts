@@ -10,12 +10,12 @@ export const useProductNavigate = () => {
   const navigate = useNavigate();
 
   const navigateToProductsPage = async (product: Product) => {
-    const productGroup = queryClient.fetchQuery({
+    const productGroup = await queryClient.fetchQuery({
       queryKey: ['type', product.productType.id, 'group'],
       queryFn: () => fetchGroupByType(product.productType.id),
     });
 
-    navigate(`/products?${QUERY_PARAMS.Group}=${(await productGroup).id}`);
+    navigate(`/products?${QUERY_PARAMS.Group}=${productGroup.id}`);
   };
 
   return { navigateToProductsPage };
