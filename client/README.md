@@ -17,17 +17,19 @@ This is a frontend project built with **Vite** and **React**. The project uses *
 
 ## Folder Structure
 
+```
 src/
 ├── components/ # Contains reusable components used across the project
 ├── pages/ # Includes all the pages for the application
 ├── router/ # Handles the application routing setup
 ├── shared/ # Core shared resources and utilities
-│ ├── constants/ # Holds constant values used throughout the app
-│ ├── hooks/ # Custom React hooks
-│ ├── services/ # API service files for server communication
-│ ├── store/ # Client state management with Zustand (slices and hooks)
-│ ├── types/ # TypeScript interfaces and type definitions
-│ ├── UI/ # Reusable UI components (e.g., table, buttons, modals)
-│ └── utils/ # Utility functions and helpers
+│   ├── constants/ # Holds constant values used throughout the app
+│   ├── hooks/ # Custom React hooks
+│   ├── services/ # API service files for server communication
+│   ├── store/ # Client state management with Zustand (slices and hooks)
+│   ├── types/ # TypeScript interfaces and type definitions
+│   ├── UI/ # Reusable UI components (e.g., table, buttons, modals)
+│   └── utils/ # Utility functions and helpers
 ├── App.tsx # Application root
 └── main.tsx # Application entry point
+```
