@@ -16,6 +16,7 @@ export const productTypeIdValidator = async (
     if (!productType) {
       notFound(res, 'Product Type Not Found');
     } else {
+      req.productType = productType;
       next();
     }
   } catch (err) {

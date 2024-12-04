@@ -1,31 +1,28 @@
 import type { Request, Response } from 'express';
 
-import { getProductsByType, getProductType } from '../../models/product-type';
+import { getProductsByType } from '../../models/product-type';
 import { productAdapter } from '../../adapters/product';
-import { notFound, success, internalError } from '../../shared/utils';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductsByTypeController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const productTypeId = req.params.id;
-
-    const productType = await getProductType(productTypeId);
+    const { productType } = req;
 
     if (!productType) {
-      notFound(res, 'Product Type Not Found');
-
-      return;
+      throw new Error('Product Type Not Found');
     }
 
-    const products = await getProductsByType(productTypeId);
+    const products = await getProductsByType(productType.id);
     const parsedProducts = products.map((product) =>
       productAdapter(product, productType)
     );
 
     success(res, parsedProducts);
   } catch (err) {
+    console.error(err);
     internalError(res);
   }
 };

@@ -22,9 +22,14 @@ const productTypesRouter = Router();
 
 productTypesRouter.get(
   '/product-types/:id/products',
+  productTypeIdValidator,
   getProductsByTypeController
 );
-productTypesRouter.get('/product-types/:id', getProductTypeController);
+productTypesRouter.get(
+  '/product-types/:id',
+  productTypeIdValidator,
+  getProductTypeController
+);
 productTypesRouter.get('/product-types', getProductTypesController);
 
 productTypesRouter.post(
