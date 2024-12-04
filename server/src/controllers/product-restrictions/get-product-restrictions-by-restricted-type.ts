@@ -9,10 +9,14 @@ export const getProductRestrictionsByRestrictedTypeController = async (
   res: Response
 ) => {
   try {
-    const productTypeId = req.params.id;
+    const { productType } = req;
+
+    if (!productType) {
+      throw new Error('Product Type Not Found');
+    }
 
     const productRestrictions = await getProductRestrictionsByRestrictedType(
-      productTypeId
+      productType.id
     );
 
     const result = productRestrictions.map((productRestriction) =>
@@ -21,6 +25,8 @@ export const getProductRestrictionsByRestrictedTypeController = async (
 
     success(res, result);
   } catch (err) {
+    console.error(err);
+
     internalError(res);
   }
 };

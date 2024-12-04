@@ -9,10 +9,14 @@ export const getProductRestrictionsByRestrictedProductController = async (
   res: Response
 ) => {
   try {
-    const productId = req.params.id;
+    const { product } = req;
+
+    if (!product) {
+      throw new Error('Product Not Found');
+    }
 
     const productRestrictions = await getProductRestrictionsByRestrictedProduct(
-      productId
+      product.id
     );
 
     const result = productRestrictions.map((productRestriction) =>
@@ -21,6 +25,7 @@ export const getProductRestrictionsByRestrictedProductController = async (
 
     success(res, result);
   } catch (err) {
+    console.error(err);
     internalError(res);
   }
 };

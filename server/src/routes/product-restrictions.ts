@@ -49,6 +49,7 @@ productRestrictionsRouter.get(
 );
 productRestrictionsRouter.get(
   '/product-restrictions/:id',
+  productRestrictionIdValidator,
   getProductRestrictionController
 );
 productRestrictionsRouter.get(

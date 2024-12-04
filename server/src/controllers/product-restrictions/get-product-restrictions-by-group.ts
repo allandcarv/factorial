@@ -9,9 +9,15 @@ export const getProductRestrictionsByGroupController = async (
   res: Response
 ) => {
   try {
-    const groupId = req.params.id;
+    const { productGroup } = req;
 
-    const productRestrictions = await getProductRestrictionsByGroup(groupId);
+    if (!productGroup) {
+      throw new Error('Product Group Not Found');
+    }
+
+    const productRestrictions = await getProductRestrictionsByGroup(
+      productGroup.id
+    );
 
     const result = productRestrictions.map((productRestriction) =>
       productRestrictionAdapter(productRestriction)

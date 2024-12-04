@@ -14,6 +14,7 @@ export const productRestrictionIdValidator = async (
     if (!productRestriction) {
       notFound(res, 'Product Restriction Not Found');
     } else {
+      req.productRestriction = productRestriction;
       next();
     }
   } catch (err) {
