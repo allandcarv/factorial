@@ -14,16 +14,20 @@ export const getProductsByGroupController = async (
   res: Response
 ) => {
   try {
-    const productGroupId = req.params.id;
+    const { productGroup } = req;
 
-    const productTypes = await getTypesByGroup(productGroupId);
+    if (!productGroup) {
+      throw new Error('Product Group Not Found');
+    }
+
+    const productTypes = await getTypesByGroup(productGroup.id);
     const mappedProductTypes = new Map<string, ProductTypeDTO>();
 
     for (const productType of productTypes) {
       mappedProductTypes.set(productType.id, productType);
     }
 
-    const products = await getProductsByGroup(productGroupId);
+    const products = await getProductsByGroup(productGroup.id);
     const parsedProducts: Product[] = products.map((product) => {
       const productType = mappedProductTypes.get(product.product_type);
 
@@ -36,6 +40,7 @@ export const getProductsByGroupController = async (
 
     success(res, parsedProducts);
   } catch (err) {
+    console.error(err);
     internalError(res);
   }
 };

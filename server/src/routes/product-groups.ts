@@ -25,9 +25,14 @@ productGroupsRouter.get(
 );
 productGroupsRouter.get(
   '/product-groups/:id/types',
+  productGroupIdValidator,
   getProductTypesByGroupController
 );
-productGroupsRouter.get('/product-groups/:id', getProductGroupController);
+productGroupsRouter.get(
+  '/product-groups/:id',
+  productGroupIdValidator,
+  getProductGroupController
+);
 productGroupsRouter.get('/product-groups', getProductGroupsController);
 
 productGroupsRouter.post(

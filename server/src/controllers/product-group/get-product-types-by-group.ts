@@ -1,25 +1,22 @@
 import type { Request, Response } from 'express';
 
-import { getProductGroup, getTypesByGroup } from '../../models/product-group';
+import { getTypesByGroup } from '../../models/product-group';
 import type { ProductType } from '../../shared/types/product-type';
 import { productTypeAdapter } from '../../adapters/product-type';
-import { notFound, success, internalError } from '../../shared/utils';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductTypesByGroupController = async (
   req: Request,
   res: Response
 ) => {
   try {
-    const productGroupId = req.params.id;
-
-    const productGroup = await getProductGroup(productGroupId);
+    const { productGroup } = req;
 
     if (!productGroup) {
-      notFound(res, 'Product Group Not Found');
-      return;
+      throw new Error('Product Group Not Found');
     }
 
-    const productTypesByGroup = await getTypesByGroup(productGroupId);
+    const productTypesByGroup = await getTypesByGroup(productGroup.id);
 
     const parsedProductTypesByGroup: ProductType[] = productTypesByGroup.map(
       (productType) => productTypeAdapter(productType, productGroup)
@@ -27,6 +24,8 @@ export const getProductTypesByGroupController = async (
 
     success(res, parsedProductTypesByGroup);
   } catch (err) {
+    console.error(err);
+
     internalError(res);
   }
 };

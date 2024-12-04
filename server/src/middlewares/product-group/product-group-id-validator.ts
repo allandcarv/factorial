@@ -16,6 +16,7 @@ export const productGroupIdValidator = async (
     if (!productGroup) {
       notFound(res, 'Product Group Not Found');
     } else {
+      req.productGroup = productGroup;
       next();
     }
   } catch (err) {
