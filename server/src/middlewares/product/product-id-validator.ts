@@ -16,6 +16,7 @@ export const productIdValidator = async (
     if (!product) {
       notFound(res, 'Product Not Found');
     } else {
+      req.product = product;
       next();
     }
   } catch (err) {

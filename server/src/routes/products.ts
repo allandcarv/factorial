@@ -19,7 +19,7 @@ import {
 
 const productsRouter = Router();
 
-productsRouter.get('/products/:id', getProductController);
+productsRouter.get('/products/:id', productIdValidator, getProductController);
 productsRouter.get('/products', getProductsController);
 
 productsRouter.post(

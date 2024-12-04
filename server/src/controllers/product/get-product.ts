@@ -1,19 +1,15 @@
 import type { Request, Response } from 'express';
 
-import { getProduct } from '../../models/product';
 import { getProductType } from '../../models/product-type';
 import { productAdapter } from '../../adapters/product';
-import { notFound, success, internalError } from '../../shared/utils';
+import { success, internalError } from '../../shared/utils';
 
 export const getProductController = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
-    const product = await getProduct(id);
+    const { product } = req;
 
     if (!product) {
-      notFound(res, 'Product not found');
-
-      return;
+      throw new Error('Product Not Found');
     }
 
     const productType = await getProductType(product.product_type);
@@ -26,6 +22,7 @@ export const getProductController = async (req: Request, res: Response) => {
 
     success(res, result);
   } catch (err) {
+    console.error(err);
     internalError(res);
   }
 };
