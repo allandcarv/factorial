@@ -1,10 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useAppStore } from '../store/hooks';
-import {
-  fetchProductRestrictionsByRestrictedProduct,
-  fetchProductRestrictionsBySourceProduct,
-} from '../services/api';
+import { fetchRestrictedProductsByProduct } from '../services/api';
 
 export const useProductRestrictions = () => {
   const queryClient = useQueryClient();
@@ -16,34 +13,23 @@ export const useProductRestrictions = () => {
     removeRestrictedProduct,
   } = useAppStore();
 
-  const getRestrictionsBySourceProduct = (sourceProductId: string) =>
+  const getRestrictedProductsByProduct = (productId: string) =>
     queryClient.fetchQuery({
-      queryKey: ['product-restriction', 'source', sourceProductId],
-      queryFn: () => fetchProductRestrictionsBySourceProduct(sourceProductId),
+      queryKey: ['product', productId, 'restricted-products'],
+      queryFn: () => fetchRestrictedProductsByProduct(productId),
     });
 
-  const getRestrictionsByRestrictedProduct = (restrictedProductId: string) =>
-    queryClient.fetchQuery({
-      queryKey: ['product-restriction', 'restricted', restrictedProductId],
-      queryFn: () =>
-        fetchProductRestrictionsByRestrictedProduct(restrictedProductId),
-    });
-
-  const getProductRestrictions = async (productId: string) => {
+  const getProductRestrictionsByProduct = async (productId: string) => {
     try {
       setIsLoading(true);
       setIsError(false);
 
-      const productRestrictionsBySourceProduct =
-        await getRestrictionsBySourceProduct(productId);
-      const productRestrictionsByRestrictedProduct =
-        await getRestrictionsByRestrictedProduct(productId);
-
-      productRestrictionsBySourceProduct.forEach((productRestriction) =>
-        addRestrictedProduct(productRestriction.restrictedProduct)
+      const restrictedProducts = await getRestrictedProductsByProduct(
+        productId
       );
-      productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
-        addRestrictedProduct(productRestriction.sourceProduct)
+
+      restrictedProducts.forEach((restrictedProduct) =>
+        addRestrictedProduct(restrictedProduct)
       );
     } catch {
       setIsError(true);
@@ -52,21 +38,17 @@ export const useProductRestrictions = () => {
     }
   };
 
-  const removeProductRestrictions = async (productId: string) => {
+  const removeProductRestrictionsByProduct = async (productId: string) => {
     try {
       setIsLoading(true);
       setIsError(false);
 
-      const productRestrictionsBySourceProduct =
-        await getRestrictionsBySourceProduct(productId);
-      const productRestrictionsByRestrictedProduct =
-        await getRestrictionsByRestrictedProduct(productId);
-
-      productRestrictionsBySourceProduct.forEach((productRestriction) =>
-        removeRestrictedProduct(productRestriction.restrictedProduct)
+      const restrictedProducts = await getRestrictedProductsByProduct(
+        productId
       );
-      productRestrictionsByRestrictedProduct.forEach((productRestriction) =>
-        removeRestrictedProduct(productRestriction.sourceProduct)
+
+      restrictedProducts.forEach((restrictedProduct) =>
+        removeRestrictedProduct(restrictedProduct)
       );
     } catch {
       setIsError(true);
@@ -76,7 +58,7 @@ export const useProductRestrictions = () => {
   };
 
   return {
-    getProductRestrictions,
-    removeProductRestrictions,
+    getProductRestrictionsByProduct,
+    removeProductRestrictionsByProduct,
   };
 };

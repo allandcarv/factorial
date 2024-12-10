@@ -13,8 +13,10 @@ export const useOnClickProduct = () => {
   const addProduct = useAppStore((store) => store.addProduct);
   const removeProduct = useAppStore((store) => store.removeProduct);
 
-  const { getProductRestrictions, removeProductRestrictions } =
-    useProductRestrictions();
+  const {
+    getProductRestrictionsByProduct,
+    removeProductRestrictionsByProduct,
+  } = useProductRestrictions();
 
   const onClickItemHandler = async (product: Product) => {
     if (!pathname.includes('products')) {
@@ -25,10 +27,10 @@ export const useOnClickProduct = () => {
 
     if (isProductSelected) {
       removeProduct(product);
-      removeProductRestrictions(product.id);
+      removeProductRestrictionsByProduct(product.id);
     } else {
       addProduct(product);
-      getProductRestrictions(product.id);
+      getProductRestrictionsByProduct(product.id);
     }
   };
 

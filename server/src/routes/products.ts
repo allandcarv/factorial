@@ -10,6 +10,7 @@ import {
   deleteProductController,
   getProductController,
   getProductsController,
+  getRestrictedProductsController,
   updateProductController,
 } from '../controllers/product';
 import {
@@ -20,6 +21,11 @@ import {
 const productsRouter = Router();
 
 productsRouter.get('/products/:id', productIdValidator, getProductController);
+productsRouter.get(
+  '/products/:id/restricted-products',
+  productIdValidator,
+  getRestrictedProductsController
+);
 productsRouter.get('/products', getProductsController);
 
 productsRouter.post(

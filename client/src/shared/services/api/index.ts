@@ -7,3 +7,4 @@ export { fetchProduct } from './fetch-product';
 export { fetchProductsByGroup } from './fetch-products-by-group';
 export { fetchProductRestrictionsByRestrictedProduct } from './fetch-product-restrictions-by-restricted-product';
 export { fetchProductRestrictionsBySourceProduct } from './fetch-product-restrictions-by-source-product';
+export { fetchRestrictedProductsByProduct } from './fetch-restricted-products-by-product';
